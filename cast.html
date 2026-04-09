@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-<meta name="description" content="Massage Tokyo - Cast | 今夜の仲間たち。銀座メンズエステのセラピスト一覧。English speaking, foreigner friendly.">
-<title>Cast | Massage Tokyo</title>
+<meta name="description" content="Massage Tokyo – Tonight's Cast. Meet our beautiful English-speaking therapists in Ginza, Tokyo.">
+<title>Cast | Massage Tokyo – Best Massage in Ginza</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--w:#fff;--b:#1a1a1a;--g:#555;--gl:#888;--bg:#faf9f7;--gold:#b8986a;--bd:#eee}
-html{scroll-behavior:smooth}body{font-family:'Noto Sans JP',sans-serif;color:var(--b);background:var(--bg);overflow-x:hidden;padding-bottom:60px;max-width:100vw}
+:root{--w:#fff;--b:#1a1a1a;--g:#555;--gl:#888;--bg:#faf9f7;--gold:#b8986a;--bd:#eee;--sh:0 1px 3px rgba(0,0,0,.08)}
+html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;color:var(--b);background:var(--bg);overflow-x:hidden;padding-bottom:60px;max-width:100vw}
 a{text-decoration:none;color:inherit}
 header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--bd);height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;backdrop-filter:blur(8px)}
 .logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;letter-spacing:.12em;line-height:1.2}
@@ -36,7 +35,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border
 .cast-card:hover .ctap-hint{opacity:1}
 .cinfo{padding:.85rem 0}
 .cname{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;display:block;margin-bottom:.2rem}
-.cmeta{font-size:.68rem;color:var(--gl);letter-spacing:.08em}
+.cmeta{font-size:.7rem;color:var(--gl);letter-spacing:.08em}
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:2000;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(6px)}
 .modal-bg.show{display:flex}
 .modal{background:var(--b);color:var(--w);width:min(760px,100%);max-height:92vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;position:relative}
@@ -59,14 +58,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border
 .bi{flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.95rem;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;transition:filter .3s}.bi:hover{filter:brightness(1.1)}
 .bln{background:#06c755;color:#fff}.bml{background:#333;color:#fff}.brv{background:var(--gold);color:#fff}
 @media(max-width:1000px){.cast-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:700px){
-  html,body{width:100%;max-width:100vw;overflow-x:hidden}
-  .cast-grid{grid-template-columns:repeat(2,1fr);gap:.85rem}
-  .cast-section{padding:1.75rem 1rem}
-  .modal{grid-template-columns:1fr}.modal-img{min-height:220px;aspect-ratio:4/3}.modal-body{padding:1.25rem}
-  .mstats{grid-template-columns:1fr 1fr}.mname{font-size:1.5rem}
-  header{padding:0 1rem}.filter-bar{padding:.65rem 1rem;gap:.4rem}.filter-btn{padding:.35rem .85rem;font-size:.58rem}
-}
+@media(max-width:700px){html,body{width:100%;max-width:100vw;overflow-x:hidden}.cast-grid{grid-template-columns:repeat(2,1fr);gap:.85rem}.cast-section{padding:1.75rem 1rem}.modal{grid-template-columns:1fr}.modal-img{min-height:220px;aspect-ratio:4/3}.modal-body{padding:1.25rem}.mstats{grid-template-columns:1fr 1fr}.mname{font-size:1.5rem}header{padding:0 1rem}.filter-bar{padding:.65rem 1rem;gap:.4rem}.filter-btn{padding:.35rem .85rem;font-size:.58rem}}
 @media(max-width:400px){.cast-grid{grid-template-columns:repeat(2,1fr);gap:.65rem}}
 </style>
 </head>
@@ -74,20 +66,20 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border
 <header>
   <div class="logo">Massage Tokyo<span>Best Massage in Ginza</span></div>
   <div style="display:flex;align-items:center;gap:1.25rem">
-    <a href="index.html" class="hback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>トップに戻る</a>
-    <a href="https://line.me/R/ti/p/@happyend_ginza" class="btnr" target="_blank">RESERVE</a>
+    <a href="index.html" class="hback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back to Top</a>
+    <a href="https://line.me/R/ti/p/@happyend_ginza" class="btnr" target="_blank">Reserve</a>
   </div>
 </header>
 <section class="page-hero">
   <span class="sen">Tonight's Cast</span>
-  <h1>今夜の仲間たち</h1>
-  <p>写真をタップするとプロフィールが見れます · 毎日更新</p>
+  <h1>Meet Our Companions</h1>
+  <p>Tap any photo to view full profile · Updated daily · All therapists speak English</p>
 </section>
 <div class="filter-bar">
-  <button class="filter-btn active" onclick="filterCast('ALL',this)">ALL</button>
-  <button class="filter-btn" onclick="filterCast('NEW FACE',this)">NEW FACE</button>
-  <button class="filter-btn" onclick="filterCast('PREMIUM',this)">PREMIUM</button>
-  <button class="filter-btn" onclick="filterCast('SPECIAL',this)">SPECIAL</button>
+  <button class="filter-btn active" onclick="filterCast('ALL',this)">All</button>
+  <button class="filter-btn" onclick="filterCast('NEW FACE',this)">New Face</button>
+  <button class="filter-btn" onclick="filterCast('PREMIUM',this)">Premium</button>
+  <button class="filter-btn" onclick="filterCast('SPECIAL',this)">Special</button>
 </div>
 <section class="cast-section"><div class="cast-grid" id="castGrid"></div></section>
 <div class="modal-bg" id="modalBg">
@@ -105,13 +97,13 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border
       </div>
       <p class="mdesc" id="mDesc"></p>
       <div class="mbtns">
-        <a href="https://line.me/R/ti/p/@happyend_ginza" class="btn-line" target="_blank">LINEで予約する</a>
-        <div class="btn-close" onclick="closeModal()">閉じる</div>
+        <a href="https://line.me/R/ti/p/@happyend_ginza" class="btn-line" target="_blank">Book via LINE</a>
+        <div class="btn-close" onclick="closeModal()">Close</div>
       </div>
     </div>
   </div>
 </div>
-<div class="bar"><a href="https://line.me/R/ti/p/@happyend_ginza" class="bi bln" target="_blank">LINE</a><a href="mailto:ginza.esthe@gmail.com" class="bi bml">MAIL</a><a href="https://line.me/R/ti/p/@happyend_ginza" class="bi brv" target="_blank">今すぐ予約</a></div>
+<div class="bar"><a href="https://line.me/R/ti/p/@happyend_ginza" class="bi bln" target="_blank">LINE</a><a href="mailto:ginza.esthe@gmail.com" class="bi bml">Email</a><a href="https://line.me/R/ti/p/@happyend_ginza" class="bi brv" target="_blank">Book Now</a></div>
 <script>
 const CAST=[
   {rank:"NEW FACE",name:"Airis",age:"26",height:"163",cup:"D",desc:"Irresistibly cute with maximum charm and a sexy edge.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/04/1775374488393.jpg"},
@@ -138,10 +130,15 @@ const CAST=[
 function renderCast(filter){
   const grid=document.getElementById('castGrid');
   const list=filter==='ALL'?CAST:CAST.filter(c=>c.rank===filter);
-  grid.innerHTML=list.map((c)=>{
-    const rc=c.rank==='PREMIUM'?'pm':c.rank==='SPECIAL'?'sp':'nf';
-    const idx=CAST.indexOf(c);
-    return '<div class="cast-card" onclick="openModal('+idx+')"><span class="crnk '+rc+'">'+c.rank+'</span><div class="cbgi" style="background-image:url(''+c.img+'')"></div><div class="ctap-hint">プロフィールを見る</div><div class="cinfo"><span class="cname">'+c.name+'</span><span class="cmeta">AGE '+c.age+' T'+c.height+' ('+c.cup+')</span></div></div>';
+  grid.innerHTML=list.map(c=>{
+    const idx=CAST.indexOf(c),rc=c.rank==='PREMIUM'?'nf pm':'nf'.replace('nf',c.rank==='PREMIUM'?'pm':c.rank==='SPECIAL'?'sp':'nf');
+    const rcClass=c.rank==='PREMIUM'?'pm':c.rank==='SPECIAL'?'sp':'nf';
+    return '<div class="cast-card" onclick="openModal('+idx+')">'
+      +'<span class="crnk '+rcClass+'">'+c.rank+'</span>'
+      +'<div class="cbgi" style="background-image:url(\''+c.img+'\')"></div>'
+      +'<div class="ctap-hint">View Profile</div>'
+      +'<div class="cinfo"><span class="cname">'+c.name+'</span><span class="cmeta">Age '+c.age+' · '+c.height+'cm ('+c.cup+' Cup)</span></div>'
+      +'</div>';
   }).join('');
   if('ontouchstart' in window)document.querySelectorAll('.ctap-hint').forEach(el=>el.style.opacity='1');
 }

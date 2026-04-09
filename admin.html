@@ -2,193 +2,174 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Massage Tokyo – 管理画面</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --pri:#1a1a2e;--pri2:#16213e;
-  --gold:#b8986a;--gold-l:#d4b98a;--gold-bg:rgba(184,152,106,.08);
-  --w:#fff;--bg:#f8f8fa;--bg2:#f2f2f5;
-  --txt:#1a1a2e;--txt2:#6b7280;--txt3:#9ca3af;
-  --bd:#e5e7eb;--bd2:#d1d5db;
-  --green:#10b981;--red:#ef4444;--blue:#3b82f6;--purple:#8b5cf6;
-  --sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
-  --sh2:0 4px 16px rgba(0,0,0,.1);
-  --r:10px;--r2:6px;
-}
-html,body{height:100%;font-family:'Inter','Noto Sans JP',sans-serif;background:var(--bg);color:var(--txt);font-size:14px;line-height:1.6}
+html,body{height:100%;font-family:Inter,"Noto Sans JP",sans-serif;font-size:14px;background:#f5f5f7;color:#1d1d1f}
 a{text-decoration:none;color:inherit}
-button{font-family:inherit;cursor:pointer}
-input,select,textarea{font-family:inherit}
+button,input,select,textarea{font-family:inherit}
+:root{
+  --gold:#b8986a;--gold2:#d4b98a;--goldbg:rgba(184,152,106,.1);
+  --green:#34c759;--red:#ff3b30;--blue:#007aff;--purple:#8b5cf6;
+  --bd:#d1d1d6;--bd2:#e5e5ea;--w:#fff;--bg:#f5f5f7;--bg2:#ececf0;
+  --txt:#1d1d1f;--txt2:#6e6e73;--sh:0 1px 3px rgba(0,0,0,.08)
+}
+.app{display:flex;height:100vh;overflow:hidden}
 
-/* ====== LAYOUT ====== */
-.layout{display:flex;height:100vh;overflow:hidden}
+/* SIDEBAR */
+.sb{width:220px;background:var(--w);border-right:1px solid var(--bd2);display:flex;flex-direction:column;flex-shrink:0}
+.sb-logo{padding:18px 20px;border-bottom:1px solid var(--bd2)}
+.sb-logo h1{font-size:15px;font-weight:700}
+.sb-logo p{font-size:11px;color:var(--txt2);margin-top:2px}
+.sb-nav{padding:12px 10px;flex:1}
+.sb-label{font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.08em;padding:0 10px;margin-bottom:4px;display:block}
+.nav-btn{width:100%;display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;border:none;background:none;color:var(--txt2);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;text-align:left;margin-bottom:2px}
+.nav-btn:hover{background:var(--bg);color:var(--txt)}
+.nav-btn.on{background:var(--goldbg);color:var(--gold)}
+.nav-btn svg{width:16px;height:16px;flex-shrink:0}
+.sb-foot{margin-top:auto;padding:12px 10px;border-top:1px solid var(--bd2)}
+.sb-foot a{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:12px;color:var(--txt2);transition:all .15s}.sb-foot a:hover{background:var(--bg);color:var(--txt)}
 
-/* ====== SIDEBAR ====== */
-.sidebar{width:240px;background:var(--w);border-right:1px solid var(--bd);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
-.sidebar-brand{padding:20px 20px 16px;border-bottom:1px solid var(--bd)}
-.sidebar-brand .brand-name{font-size:15px;font-weight:600;color:var(--txt);letter-spacing:.02em}
-.sidebar-brand .brand-sub{font-size:11px;color:var(--txt3);margin-top:2px;letter-spacing:.05em;text-transform:uppercase}
-.sidebar-section{padding:16px 12px 8px}
-.sidebar-section-label{font-size:10px;font-weight:600;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;padding:0 8px;margin-bottom:4px}
-.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r2);font-size:13px;font-weight:500;color:var(--txt2);cursor:pointer;transition:all .15s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left}
-.nav-item:hover{background:var(--bg);color:var(--txt)}
-.nav-item.active{background:var(--gold-bg);color:var(--gold);font-weight:600}
-.nav-item .ni{width:18px;height:18px;flex-shrink:0;opacity:.7}
-.nav-item.active .ni{opacity:1}
-.sidebar-footer{margin-top:auto;padding:16px 12px;border-top:1px solid var(--bd)}
-.sidebar-footer a{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--txt3);padding:8px 12px;border-radius:var(--r2);transition:all .15s}.sidebar-footer a:hover{background:var(--bg);color:var(--txt)}
-
-/* ====== MAIN ====== */
+/* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden}
-
-/* ====== TOPBAR ====== */
-.topbar{background:var(--w);border-bottom:1px solid var(--bd);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.topbar-left{display:flex;align-items:center;gap:12px}
-.topbar-title{font-size:16px;font-weight:600;color:var(--txt)}
-.topbar-badge{font-size:11px;background:var(--gold-bg);color:var(--gold);padding:3px 10px;border-radius:999px;font-weight:600}
-.topbar-right{display:flex;align-items:center;gap:10px}
-
-/* ====== BUTTONS ====== */
-.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--r2);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .15s;white-space:nowrap}
-.btn-primary{background:var(--gold);color:var(--w)}.btn-primary:hover{background:var(--gold-l)}
-.btn-outline{background:var(--w);color:var(--txt);border:1px solid var(--bd)}.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
-.btn-ghost{background:none;color:var(--txt2);border:none}.btn-ghost:hover{background:var(--bg);color:var(--txt)}
-.btn-danger{background:#fff5f5;color:var(--red);border:1px solid #fecaca}.btn-danger:hover{background:#fee2e2}
-.btn-sm{padding:6px 12px;font-size:12px}
-.btn-icon{width:32px;height:32px;padding:0;justify-content:center;border-radius:var(--r2)}
-
-/* ====== CONTENT ====== */
+.topbar{height:56px;background:var(--w);border-bottom:1px solid var(--bd2);padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.topbar h2{font-size:16px;font-weight:600}
+.topbar-r{display:flex;gap:8px}
 .content{flex:1;overflow-y:auto;padding:24px}
 
-/* ====== TABS ====== */
-.tab-panel{display:none}.tab-panel.active{display:block}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn-gold{background:var(--gold);color:#fff}.btn-gold:hover{background:var(--gold2)}
+.btn-wh{background:var(--w);color:var(--txt);border:1px solid var(--bd)}.btn-wh:hover{border-color:var(--gold);color:var(--gold)}
+.btn-red{background:#fff0f0;color:var(--red);border:1px solid #fecaca}.btn-red:hover{background:#ffcdd2}
+.btn-sm{padding:6px 12px;font-size:12px;border-radius:6px}
+.btn-xs{padding:4px 10px;font-size:11px;border-radius:5px}
 
-/* ====== STATS ====== */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
-.stat-card{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
-.stat-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
-.stat-icon{width:36px;height:36px;border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:16px}
-.stat-icon.gold{background:var(--gold-bg)}
-.stat-icon.green{background:#ecfdf5}
-.stat-icon.purple{background:#f5f3ff}
-.stat-icon.blue{background:#eff6ff}
-.stat-num{font-size:28px;font-weight:700;color:var(--txt);line-height:1}
-.stat-label{font-size:12px;color:var(--txt3);margin-top:4px;font-weight:500}
+/* TABS */
+.tab{display:none}.tab.on{display:block}
 
-/* ====== TOOLBAR ====== */
-.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.search-wrap{position:relative;flex:1;min-width:220px}
-.search-wrap svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--txt3);width:16px;height:16px}
-.search-input{width:100%;padding:9px 12px 9px 36px;border:1px solid var(--bd);border-radius:var(--r2);font-size:13px;background:var(--w);color:var(--txt);transition:border-color .15s;outline:none}
-.search-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,152,106,.1)}
-.filter-group{display:flex;gap:4px;background:var(--bg2);border-radius:var(--r2);padding:3px}
-.filter-chip{padding:5px 12px;border-radius:5px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:none;color:var(--txt2);transition:all .15s}
-.filter-chip.active{background:var(--w);color:var(--txt);box-shadow:var(--sh)}
+/* ===== TODAY ===== */
+.today-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.today-date{font-size:22px;font-weight:700}
+.today-date span{font-size:14px;font-weight:400;color:var(--txt2);margin-left:6px}
+.on-badge{display:inline-flex;align-items:center;gap:5px;background:#ecfdf5;color:var(--green);font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;border:1px solid rgba(52,199,89,.2)}
+.on-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.stat{background:var(--w);border:1px solid var(--bd2);border-radius:10px;padding:16px;box-shadow:var(--sh)}
+.stat-n{font-size:26px;font-weight:700;line-height:1}
+.stat-l{font-size:11px;color:var(--txt2);margin-top:4px;font-weight:500}
+.today-cast-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.today-card{background:var(--w);border:1px solid var(--bd2);border-radius:10px;overflow:hidden;box-shadow:var(--sh)}
+.today-photo{width:100%;aspect-ratio:3/4;background-size:cover;background-position:center top;position:relative}
+.today-rank{position:absolute;top:7px;left:7px;font-size:9px;font-weight:700;padding:2px 7px;border-radius:999px;color:#fff;text-transform:uppercase;letter-spacing:.05em}
+.today-name{padding:9px 8px 3px;font-size:13px;font-weight:600}
+.today-meta{padding:0 8px 9px;font-size:11px;color:var(--txt2)}
+.no-shift{text-align:center;padding:48px 20px;color:var(--txt2);grid-column:1/-1}
+.no-shift-icon{font-size:36px;margin-bottom:10px}
+.no-shift p{font-size:13px;line-height:1.6}
 
-/* ====== CAST GRID ====== */
-.cast-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
-.cast-card{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:all .2s;cursor:pointer;position:relative}
-.cast-card:hover{box-shadow:var(--sh2);border-color:var(--gold);transform:translateY(-2px)}
+/* ===== SHIFT ===== */
+.shift-nav{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.shift-nav-label{font-size:15px;font-weight:600;flex:1;text-align:center}
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px}
+.day-col{background:var(--w);border:1px solid var(--bd2);border-radius:10px;min-height:150px;box-shadow:var(--sh);overflow:hidden}
+.day-col.is-today{border:2px solid var(--gold)}
+.day-hd{padding:10px 10px 8px;border-bottom:1px solid var(--bd2)}
+.day-dn{font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.06em}
+.day-dt{font-size:15px;font-weight:700;margin-top:2px}
+.day-col.is-today .day-dt{color:var(--gold)}
+.day-bd{padding:8px;display:flex;flex-direction:column;gap:4px}
+.shift-chip{background:var(--goldbg);border:1px solid rgba(184,152,106,.25);border-radius:5px;padding:4px 7px;font-size:11px;font-weight:500;color:var(--gold);display:flex;align-items:center;justify-content:space-between}
+.chip-del{border:none;background:none;color:rgba(184,152,106,.5);cursor:pointer;font-size:14px;line-height:1;padding:0}.chip-del:hover{color:var(--red)}
+.day-add{border:1px dashed var(--bd);border-radius:5px;padding:5px;font-size:11px;color:var(--txt2);background:none;cursor:pointer;width:100%;text-align:center;transition:all .15s;margin-top:2px}.day-add:hover{border-color:var(--gold);color:var(--gold)}
+.shift-select-box{background:var(--w);border:1px solid var(--bd2);border-radius:10px;padding:16px;margin-bottom:20px;box-shadow:var(--sh)}
+.shift-select-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.shift-select-hd h4{font-size:13px;font-weight:600}
+.cast-picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px}
+.picker-item{border:1px solid var(--bd2);border-radius:8px;padding:8px 6px;cursor:pointer;text-align:center;transition:all .15s;background:var(--w);position:relative}
+.picker-item:hover{border-color:var(--gold)}
+.picker-item.sel{border-color:var(--gold);background:var(--goldbg)}
+.picker-item.sel::after{content:"✓";position:absolute;top:4px;right:6px;font-size:11px;color:var(--gold);font-weight:700}
+.picker-photo{width:44px;height:58px;border-radius:5px;background-size:cover;background-position:center top;margin:0 auto 5px}
+.picker-name{font-size:11px;font-weight:600}
+.picker-meta{font-size:10px;color:var(--txt2)}
+.shift-select-ft{margin-top:12px;text-align:right}
+
+/* ===== CAST ===== */
+.cast-toolbar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.search-box{flex:1;min-width:180px;padding:8px 14px;border:1px solid var(--bd);border-radius:8px;font-size:13px;outline:none;background:var(--w);transition:border-color .15s}.search-box:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,152,106,.1)}
+.rank-tabs{display:flex;gap:3px;background:var(--bg2);border-radius:8px;padding:3px}
+.rank-tab{padding:5px 12px;border-radius:6px;border:none;background:none;font-size:12px;font-weight:500;color:var(--txt2);cursor:pointer;transition:all .15s}
+.rank-tab.on{background:var(--w);color:var(--txt);box-shadow:var(--sh)}
+.cast-admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px}
+.cast-card{background:var(--w);border:1px solid var(--bd2);border-radius:10px;overflow:hidden;box-shadow:var(--sh);transition:all .2s}
+.cast-card:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(0,0,0,.1);transform:translateY(-2px)}
 .cast-card.inactive{opacity:.5}
 .cast-photo{width:100%;aspect-ratio:3/4;background-size:cover;background-position:center top;position:relative;overflow:hidden}
-.cast-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 50%);opacity:0;transition:opacity .2s;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;gap:8px}
-.cast-card:hover .cast-photo-overlay{opacity:1}
-.cast-rank-badge{position:absolute;top:10px;left:10px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;color:var(--w)}
-.rank-nf{background:var(--green)}
-.rank-pm{background:var(--gold)}
-.rank-sp{background:var(--purple)}
-.status-dot{position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;border:2px solid var(--w)}
-.status-dot.on{background:var(--green)}
-.status-dot.off{background:var(--txt3)}
-.cast-info{padding:12px}
-.cast-name{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:2px}
-.cast-meta{font-size:11px;color:var(--txt3)}
-.cast-actions{display:flex;gap:6px;padding:0 12px 12px}
-.mini-btn{flex:1;padding:6px;font-size:11px;font-weight:500;border-radius:5px;border:1px solid var(--bd);background:var(--w);color:var(--txt2);cursor:pointer;transition:all .15s;text-align:center}
-.mini-btn:hover{border-color:var(--gold);color:var(--gold)}
-.mini-btn.on-duty{background:var(--green);color:var(--w);border-color:var(--green)}.mini-btn.on-duty:hover{background:#0da271}
-.mini-btn.off-duty{background:var(--bg);color:var(--txt3);border-color:var(--bd)}
+.cast-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);opacity:0;display:flex;align-items:center;justify-content:center;transition:opacity .2s}
+.cast-card:hover .cast-overlay{opacity:1}
+.cast-rank-badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:700;padding:2px 7px;border-radius:999px;color:#fff;text-transform:uppercase}
+.rank-nf{background:#34c759}.rank-pm{background:var(--gold)}.rank-sp{background:var(--purple)}
+.status-pill{position:absolute;top:8px;right:8px;font-size:9px;font-weight:600;padding:2px 6px;border-radius:999px}
+.stt-on{background:#ecfdf5;color:var(--green)}.stt-off{background:#f5f5f7;color:var(--txt2)}
+.cast-info{padding:10px}
+.cast-name{font-size:13px;font-weight:600;margin-bottom:2px}
+.cast-meta-t{font-size:11px;color:var(--txt2)}
+.cast-actions{display:flex;gap:5px;padding:0 10px 10px}
 
-/* ====== MODAL ====== */
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
-.modal-bg.show{display:flex}
-.modal{background:var(--w);border-radius:var(--r);width:min(560px,100%);max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
-.modal-header{padding:20px 24px 16px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--w);z-index:1}
-.modal-header h3{font-size:15px;font-weight:600;color:var(--txt)}
-.modal-close{width:28px;height:28px;border-radius:5px;border:none;background:var(--bg);color:var(--txt2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:background .15s}.modal-close:hover{background:var(--bg2)}
-.modal-preview{padding:20px 24px 0;display:flex;align-items:center;gap:16px}
-.preview-photo{width:72px;height:96px;border-radius:var(--r2);background-size:cover;background-position:center top;background-color:var(--bg2);border:1px solid var(--bd)}
-.preview-info .preview-name{font-size:16px;font-weight:600}
-.preview-info .preview-rank{font-size:11px;color:var(--txt3);margin-top:2px}
-.modal-body{padding:20px 24px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-group{display:flex;flex-direction:column;gap:5px}
-.form-group.full{grid-column:1/-1}
-.form-label{font-size:12px;font-weight:500;color:var(--txt2)}
-.form-input{padding:9px 12px;border:1px solid var(--bd);border-radius:var(--r2);font-size:13px;color:var(--txt);outline:none;transition:border-color .15s;background:var(--w)}
-.form-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,152,106,.1)}
-.form-input::placeholder{color:var(--txt3)}
-.modal-footer{padding:16px 24px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;position:sticky;bottom:0;background:var(--w)}
-.modal-footer-right{display:flex;gap:8px}
+/* ===== MODAL ===== */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)}
+.modal-bg.on{display:flex}
+.modal{background:var(--w);border-radius:14px;width:min(540px,100%);max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal-hd{padding:18px 22px 14px;border-bottom:1px solid var(--bd2);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--w);z-index:1;border-radius:14px 14px 0 0}
+.modal-hd h3{font-size:15px;font-weight:600}
+.modal-x{width:26px;height:26px;border-radius:6px;border:none;background:var(--bg);cursor:pointer;font-size:16px;color:var(--txt2);transition:background .15s}.modal-x:hover{background:var(--bd2)}
+.modal-prev{padding:18px 22px 0;display:flex;align-items:center;gap:14px;background:var(--bg);margin:0 0 0 0;border-bottom:1px solid var(--bd2);padding-bottom:16px}
+.prev-photo{width:60px;height:80px;border-radius:8px;background-size:cover;background-position:center top;background-color:var(--bg2);border:1px solid var(--bd2);flex-shrink:0}
+.prev-name{font-size:16px;font-weight:600}
+.prev-sub{font-size:12px;color:var(--txt2);margin-top:3px}
+.modal-body{padding:20px 22px}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{display:flex;flex-direction:column;gap:5px}.fg.full{grid-column:1/-1}
+.fl{font-size:11px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em}
+.fi{padding:9px 12px;border:1px solid var(--bd);border-radius:7px;font-size:13px;color:var(--txt);outline:none;transition:border-color .15s;width:100%;background:var(--w)}.fi:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,152,106,.1)}
+.modal-ft{padding:14px 22px;border-top:1px solid var(--bd2);display:flex;justify-content:space-between;position:sticky;bottom:0;background:var(--w)}
+.modal-ft-r{display:flex;gap:8px}
 
-/* ====== SCHEDULE ====== */
-.schedule-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
-.day-card{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
-.day-header{font-size:11px;font-weight:600;color:var(--txt3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:flex;flex-direction:column;gap:2px}
-.day-header .day-date{font-size:13px;font-weight:700;color:var(--txt);letter-spacing:0}
-.day-cast-chip{background:var(--gold-bg);color:var(--gold);font-size:11px;font-weight:500;padding:4px 8px;border-radius:5px;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-/* ====== TOAST ====== */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--txt);color:var(--w);padding:12px 20px;border-radius:var(--r);font-size:13px;font-weight:500;z-index:9999;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none;box-shadow:var(--sh2)}
-.toast.show{opacity:1;transform:translateY(0)}
-.toast.success{background:var(--green)}
-.toast.error{background:var(--red)}
-
-/* ====== LP PREVIEW ====== */
-.lp-preview-bar{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:14px 20px;margin-bottom:16px;display:flex;align-items:center;gap:12px;box-shadow:var(--sh)}
-.lp-url{font-size:13px;color:var(--gold);font-weight:500;flex:1}
-
-/* ====== EMPTY ====== */
-.empty-state{text-align:center;padding:60px 20px;color:var(--txt3)}
-.empty-state .empty-icon{font-size:40px;margin-bottom:12px}
-.empty-state p{font-size:14px}
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;background:#1d1d1f;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:500;z-index:9999;opacity:0;transform:translateY(6px);transition:all .25s;pointer-events:none;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.toast.on{opacity:1;transform:translateY(0)}
+.toast.ok{background:var(--green)}
 </style>
 </head>
 <body>
-<div class="layout">
+<div class="app">
 
 <!-- SIDEBAR -->
-<aside class="sidebar">
-  <div class="sidebar-brand">
-    <div class="brand-name">Massage Tokyo</div>
-    <div class="brand-sub">Admin Dashboard</div>
+<aside class="sb">
+  <div class="sb-logo">
+    <h1>Massage Tokyo</h1>
+    <p>Admin Dashboard</p>
   </div>
-  <div class="sidebar-section">
-    <div class="sidebar-section-label">メイン</div>
-    <button class="nav-item active" onclick="switchTab('cast',this)">
-      <svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+  <div class="sb-nav">
+    <span class="sb-label">メニュー</span>
+    <button class="nav-btn on" onclick="gotoTab('today',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+      今日の出勤
+    </button>
+    <button class="nav-btn" onclick="gotoTab('shift',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      シフト管理
+    </button>
+    <button class="nav-btn" onclick="gotoTab('cast',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       キャスト管理
     </button>
-    <button class="nav-item" onclick="switchTab('schedule',this)">
-      <svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      出勤スケジュール
-    </button>
-    <button class="nav-item" onclick="switchTab('lp',this)">
-      <svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
-      LP プレビュー
-    </button>
   </div>
-  <div class="sidebar-section">
-    <div class="sidebar-section-label">設定</div>
-    <button class="nav-item" onclick="switchTab('settings',this)">
-      <svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-      設定
-    </button>
-  </div>
-  <div class="sidebar-footer">
+  <div class="sb-foot">
     <a href="https://c-t0922.github.io/happyend-lp/" target="_blank">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       LPサイトを見る
@@ -199,169 +180,93 @@ input,select,textarea{font-family:inherit}
 <!-- MAIN -->
 <div class="main">
   <div class="topbar">
-    <div class="topbar-left">
-      <div class="topbar-title" id="topbarTitle">キャスト管理</div>
-      <div class="topbar-badge" id="topbarBadge">20名</div>
-    </div>
-    <div class="topbar-right">
-      <button class="btn btn-outline btn-sm" onclick="refreshData()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23,4 23,10 17,10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-        更新
-      </button>
-      <button class="btn btn-primary btn-sm" onclick="openAdd()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        キャスト追加
-      </button>
-    </div>
+    <h2 id="topTitle">今日の出勤</h2>
+    <div class="topbar-r" id="topbarActions"></div>
   </div>
+  <div class="content">
 
-  <div class="content" id="mainContent">
-
-    <!-- CAST TAB -->
-    <div class="tab-panel active" id="tab-cast">
-      <div class="stats-row">
-        <div class="stat-card">
-          <div class="stat-top">
-            <div><div class="stat-num" id="s-total">20</div><div class="stat-label">総キャスト</div></div>
-            <div class="stat-icon gold">👥</div>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div><div class="stat-num" id="s-active" style="color:var(--green)">20</div><div class="stat-label">出勤中</div></div>
-            <div class="stat-icon green">✅</div>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div><div class="stat-num" id="s-premium" style="color:var(--gold)">8</div><div class="stat-label">PREMIUM</div></div>
-            <div class="stat-icon gold">⭐</div>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div><div class="stat-num" id="s-special" style="color:var(--purple)">1</div><div class="stat-label">SPECIAL</div></div>
-            <div class="stat-icon purple">💎</div>
-          </div>
-        </div>
+    <!-- TODAY -->
+    <div class="tab on" id="tab-today">
+      <div class="today-hd">
+        <div class="today-date" id="todayLabel"></div>
+        <div class="on-badge" id="onBadge">0名出勤中</div>
       </div>
-
-      <div class="toolbar">
-        <div class="search-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" class="search-input" placeholder="名前で検索..." id="searchInput" oninput="applyFilter()">
-        </div>
-        <div class="filter-group">
-          <button class="filter-chip active" onclick="setRankFilter('ALL',this)">すべて</button>
-          <button class="filter-chip" onclick="setRankFilter('NEW FACE',this)">NEW FACE</button>
-          <button class="filter-chip" onclick="setRankFilter('PREMIUM',this)">PREMIUM</button>
-          <button class="filter-chip" onclick="setRankFilter('SPECIAL',this)">SPECIAL</button>
-          <button class="filter-chip" onclick="setRankFilter('ACTIVE',this)">出勤中</button>
-        </div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-n" id="sTotal">0</div><div class="stat-l">総キャスト</div></div>
+        <div class="stat"><div class="stat-n" id="sToday" style="color:var(--green)">0</div><div class="stat-l">今日の出勤</div></div>
+        <div class="stat"><div class="stat-n" id="sPm" style="color:var(--gold)">0</div><div class="stat-l">PREMIUM</div></div>
+        <div class="stat"><div class="stat-n" id="sSp" style="color:var(--purple)">0</div><div class="stat-l">SPECIAL</div></div>
       </div>
-
-      <div class="cast-grid" id="castGrid"></div>
+      <h3 style="font-size:14px;font-weight:600;margin-bottom:12px">&#128197; 本日の出勤キャスト</h3>
+      <div class="today-cast-grid" id="todayGrid"></div>
     </div>
 
-    <!-- SCHEDULE TAB -->
-    <div class="tab-panel" id="tab-schedule">
-      <div class="schedule-grid" id="scheduleGrid"></div>
-    </div>
-
-    <!-- LP TAB -->
-    <div class="tab-panel" id="tab-lp">
-      <div class="lp-preview-bar">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20"/></svg>
-        <a class="lp-url" href="https://c-t0922.github.io/happyend-lp/" target="_blank">https://c-t0922.github.io/happyend-lp/</a>
-        <button class="btn btn-outline btn-sm" onclick="window.open('https://c-t0922.github.io/happyend-lp/','_blank')">開く ↗</button>
+    <!-- SHIFT -->
+    <div class="tab" id="tab-shift">
+      <div class="shift-nav">
+        <button class="btn btn-wh btn-sm" onclick="prevW()">&#8592; 前週</button>
+        <div class="shift-nav-label" id="weekLabel">-</div>
+        <button class="btn btn-wh btn-sm" onclick="nextW()">次週 &#8594;</button>
       </div>
-      <iframe src="https://c-t0922.github.io/happyend-lp/" style="width:100%;height:calc(100vh - 180px);border:1px solid var(--bd);border-radius:var(--r)" title="LP"></iframe>
-    </div>
-
-    <!-- SETTINGS TAB -->
-    <div class="tab-panel" id="tab-settings">
-      <div style="max-width:480px">
-        <h2 style="font-size:15px;font-weight:600;margin-bottom:20px">基本設定</h2>
-        <div style="background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:24px;box-shadow:var(--sh)">
-          <div style="display:flex;flex-direction:column;gap:16px">
-            <div class="form-group"><label class="form-label">サイト名</label><input class="form-input" value="Massage Tokyo"></div>
-            <div class="form-group"><label class="form-label">メールアドレス</label><input class="form-input" value="ginza.esthe@gmail.com"></div>
-            <div class="form-group"><label class="form-label">LINE ID</label><input class="form-input" value="@happyend_ginza"></div>
-            <div class="form-group"><label class="form-label">営業時間</label><input class="form-input" value="12:00〜29:00"></div>
-            <button class="btn btn-primary" style="width:fit-content" onclick="toast('設定を保存しました','success')">保存する</button>
-          </div>
+      <div class="week-grid" id="weekGrid"></div>
+      <div class="shift-select-box" id="shiftSelectBox" style="display:none">
+        <div class="shift-select-hd">
+          <h4 id="shiftSelectLabel">出勤キャストを選ぶ</h4>
+          <button class="btn btn-wh btn-sm" onclick="closeShiftPicker()">&#10005; 閉じる</button>
+        </div>
+        <div class="cast-picker" id="castPicker"></div>
+        <div class="shift-select-ft">
+          <button class="btn btn-gold btn-sm" onclick="applyShift()">シフトに登録する</button>
         </div>
       </div>
+    </div>
+
+    <!-- CAST -->
+    <div class="tab" id="tab-cast">
+      <div class="cast-toolbar">
+        <input type="text" class="search-box" placeholder="&#128269; 名前で検索..." id="castSearch" oninput="renderCast()">
+        <div class="rank-tabs" id="rankTabs">
+          <button class="rank-tab on" onclick="setRank('ALL',this)">すべて</button>
+          <button class="rank-tab" onclick="setRank('NEW FACE',this)">NEW FACE</button>
+          <button class="rank-tab" onclick="setRank('PREMIUM',this)">PREMIUM</button>
+          <button class="rank-tab" onclick="setRank('SPECIAL',this)">SPECIAL</button>
+        </div>
+      </div>
+      <div class="cast-admin-grid" id="castAdminGrid"></div>
     </div>
 
   </div>
 </div>
 </div>
 
-<!-- EDIT / ADD MODAL -->
+<!-- MODAL -->
 <div class="modal-bg" id="modalBg">
-  <div class="modal" id="modal">
-    <div class="modal-header">
+  <div class="modal">
+    <div class="modal-hd">
       <h3 id="modalTitle">キャスト編集</h3>
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <button class="modal-x" onclick="closeModal()">&#10005;</button>
     </div>
-    <div class="modal-preview">
-      <div class="preview-photo" id="previewPhoto"></div>
-      <div class="preview-info">
-        <div class="preview-name" id="previewName">—</div>
-        <div class="preview-rank" id="previewRank">—</div>
-      </div>
+    <div class="modal-prev" id="modalPrev">
+      <div class="prev-photo" id="prevPhoto"></div>
+      <div><div class="prev-name" id="prevName">-</div><div class="prev-sub" id="prevSub">-</div></div>
     </div>
     <div class="modal-body">
-      <div class="form-grid">
-        <div class="form-group full">
-          <label class="form-label">プロフィール画像 URL</label>
-          <input class="form-input" id="fImg" placeholder="https://..." oninput="updatePreview()">
-        </div>
-        <div class="form-group">
-          <label class="form-label">名前</label>
-          <input class="form-input" id="fName" placeholder="キャスト名" oninput="updatePreviewName()">
-        </div>
-        <div class="form-group">
-          <label class="form-label">ランク</label>
-          <select class="form-input" id="fRank" onchange="updatePreviewRank()">
-            <option value="NEW FACE">NEW FACE</option>
-            <option value="PREMIUM">PREMIUM</option>
-            <option value="SPECIAL">SPECIAL</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">年齢</label>
-          <input class="form-input" id="fAge" type="number" min="18" max="50">
-        </div>
-        <div class="form-group">
-          <label class="form-label">身長 (cm)</label>
-          <input class="form-input" id="fHeight" type="number" min="140" max="185">
-        </div>
-        <div class="form-group">
-          <label class="form-label">カップ数</label>
-          <select class="form-input" id="fCup">
-            <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">出勤ステータス</label>
-          <select class="form-input" id="fActive">
-            <option value="true">出勤中</option>
-            <option value="false">休み</option>
-          </select>
-        </div>
-        <div class="form-group full">
-          <label class="form-label">一言コメント</label>
-          <textarea class="form-input" id="fDesc" rows="3" placeholder="プロフィールコメント..."></textarea>
-        </div>
+      <div class="fg2">
+        <div class="fg full"><label class="fl">プロフィール画像 URL</label><input class="fi" id="fImg" placeholder="https://..." oninput="onImgChange()"></div>
+        <div class="fg"><label class="fl">名前</label><input class="fi" id="fName" placeholder="キャスト名" oninput="onNameChange()"></div>
+        <div class="fg"><label class="fl">ランク</label><select class="fi" id="fRank" onchange="onRankChange()"><option value="NEW FACE">NEW FACE</option><option value="PREMIUM">PREMIUM</option><option value="SPECIAL">SPECIAL</option></select></div>
+        <div class="fg"><label class="fl">年齢</label><input class="fi" id="fAge" type="number" min="18" max="50" placeholder="24"></div>
+        <div class="fg"><label class="fl">身長 cm</label><input class="fi" id="fHeight" type="number" min="140" max="185" placeholder="160"></div>
+        <div class="fg"><label class="fl">カップ数</label><select class="fi" id="fCup"><option>A</option><option>B</option><option>C</option><option selected>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option></select></div>
+        <div class="fg"><label class="fl">ステータス</label><select class="fi" id="fActive"><option value="1">● 出勤中</option><option value="0">○ 休み</option></select></div>
+        <div class="fg full"><label class="fl">コメント</label><textarea class="fi" id="fDesc" rows="3" placeholder="プロフィールコメント..."></textarea></div>
       </div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-danger btn-sm" id="deleteBtn" onclick="deleteCast()" style="display:none">削除する</button>
-      <div class="modal-footer-right">
-        <button class="btn btn-ghost btn-sm" onclick="closeModal()">キャンセル</button>
-        <button class="btn btn-primary btn-sm" onclick="saveCast()">保存する</button>
+    <div class="modal-ft">
+      <button class="btn btn-red btn-sm" id="delBtn" onclick="doDelete()" style="display:none">削除する</button>
+      <div class="modal-ft-r">
+        <button class="btn btn-wh btn-sm" onclick="closeModal()">キャンセル</button>
+        <button class="btn btn-gold btn-sm" onclick="doSave()">保存する</button>
       </div>
     </div>
   </div>
@@ -370,230 +275,320 @@ input,select,textarea{font-family:inherit}
 <div class="toast" id="toastEl"></div>
 
 <script>
-// ===== DATA =====
-var CAST = [
-  {rank:"NEW FACE",name:"Airis",age:"26",height:"163",cup:"D",desc:"Irresistibly cute with maximum charm and a sexy edge.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/04/1775374488393.jpg",active:true},
-  {rank:"NEW FACE",name:"Paypay",age:"24",height:"153",cup:"D",desc:"So charming you can't help but feel completely healed.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/01/1769063443347.webp",active:true},
-  {rank:"NEW FACE",name:"Margaret",age:"21",height:"155",cup:"D",desc:"Fresh and cute — a new face you won't forget.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1745092578220.webp",active:true},
-  {rank:"PREMIUM",name:"Lilian",age:"22",height:"159",cup:"H",desc:"Premium-class beauty with captivating presence.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250324_190124806.webp",active:true},
-  {rank:"NEW FACE",name:"Casablanca",age:"25",height:"156",cup:"F",desc:"Glamorous and cute — an unforgettable combination.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17386327067432.webp",active:true},
-  {rank:"PREMIUM",name:"Salamander",age:"20",height:"159",cup:"B",desc:"Fresh, youthful energy with premium-level skill.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250123_203010978.webp",active:true},
-  {rank:"NEW FACE",name:"Murasaki",age:"24",height:"163",cup:"E",desc:"Elegant and mysterious — a fresh face with deep charm.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17412255138022.webp",active:true},
-  {rank:"PREMIUM",name:"Blair",age:"26",height:"153",cup:"C",desc:"Glamorous and fresh — premium quality guaranteed.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1737710418647.webp",active:true},
-  {rank:"SPECIAL",name:"Suzanne",age:"26",height:"162",cup:"E",desc:"The Perfect Mixed-Beauty with Looks, Aura, and Style in One.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1735052534887.webp",active:true},
-  {rank:"PREMIUM",name:"Sophia",age:"27",height:"159",cup:"H",desc:"Glamorous premium beauty — sophisticated and sensual.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1731254097017.webp",active:true},
-  {rank:"NEW FACE",name:"Nicola",age:"22",height:"152",cup:"D",desc:"Cute and fresh — a new face full of energy.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1738632706743.webp",active:true},
-  {rank:"PREMIUM",name:"Juliana",age:"28",height:"170",cup:"G",desc:"Tall, glamorous and fresh — premium elegance.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250324_190124806.webp",active:true},
-  {rank:"PREMIUM",name:"Rosemary",age:"28",height:"160",cup:"C",desc:"Warm and refined — premium-level skill with a gentle touch.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17386327067432.webp",active:true},
-  {rank:"PREMIUM",name:"Alexander",age:"23",height:"168",cup:"C",desc:"Glamorous and hot — a premium experience awaits.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1745092578220.webp",active:true},
-  {rank:"NEW FACE",name:"Coco",age:"28",height:"165",cup:"G",desc:"Glamorous new face — stunning looks and warm charm.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17412255138022.webp",active:true},
-  {rank:"NEW FACE",name:"Christina",age:"22",height:"158",cup:"D",desc:"Fresh and cute — a wonderful new addition to our team.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1738632706743.webp",active:true},
-  {rank:"NEW FACE",name:"Amagifu",age:"25",height:"160",cup:"F",desc:"Beautiful and charming — fresh energy you will love.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250123_203010978.webp",active:true},
-  {rank:"NEW FACE",name:"Marcy",age:"23",height:"157",cup:"D",desc:"Cute and fresh — ready to make your experience special.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1731254097017.webp",active:true},
-  {rank:"NEW FACE",name:"Mountain Dew",age:"24",height:"162",cup:"E",desc:"A unique presence — fresh and full of surprises.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1735052534887.webp",active:true},
-  {rank:"NEW FACE",name:"Andrew",age:"22",height:"163",cup:"D",desc:"Charming new face bringing a fresh spark to every session.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1737710418647.webp",active:true}
+/* ==============================
+   DATA
+============================== */
+var DEFAULT_CAST = [
+  {id:1,rank:"NEW FACE",name:"Airis",age:"26",height:"163",cup:"D",desc:"Irresistibly cute with maximum charm and a sexy edge.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/04/1775374488393.jpg",active:1},
+  {id:2,rank:"NEW FACE",name:"Paypay",age:"24",height:"153",cup:"D",desc:"So charming you can't help but feel completely healed.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/01/1769063443347.webp",active:1},
+  {id:3,rank:"NEW FACE",name:"Margaret",age:"21",height:"155",cup:"D",desc:"Fresh and cute, a new face you won't forget.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1745092578220.webp",active:1},
+  {id:4,rank:"PREMIUM",name:"Lilian",age:"22",height:"159",cup:"H",desc:"Premium-class beauty with captivating presence.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250324_190124806.webp",active:1},
+  {id:5,rank:"NEW FACE",name:"Casablanca",age:"25",height:"156",cup:"F",desc:"Glamorous and cute, an unforgettable combination.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17386327067432.webp",active:1},
+  {id:6,rank:"PREMIUM",name:"Salamander",age:"20",height:"159",cup:"B",desc:"Fresh youthful energy with premium-level skill.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250123_203010978.webp",active:1},
+  {id:7,rank:"NEW FACE",name:"Murasaki",age:"24",height:"163",cup:"E",desc:"Elegant and mysterious, a fresh face with deep charm.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17412255138022.webp",active:1},
+  {id:8,rank:"PREMIUM",name:"Blair",age:"26",height:"153",cup:"C",desc:"Glamorous and fresh, premium quality guaranteed.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1737710418647.webp",active:1},
+  {id:9,rank:"SPECIAL",name:"Suzanne",age:"26",height:"162",cup:"E",desc:"The Perfect Mixed-Beauty with Looks, Aura, and Style in One.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1735052534887.webp",active:1},
+  {id:10,rank:"PREMIUM",name:"Sophia",age:"27",height:"159",cup:"H",desc:"Glamorous premium beauty, sophisticated and sensual.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1731254097017.webp",active:1},
+  {id:11,rank:"NEW FACE",name:"Nicola",age:"22",height:"152",cup:"D",desc:"Cute and fresh, a new face full of energy.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1738632706743.webp",active:1},
+  {id:12,rank:"PREMIUM",name:"Juliana",age:"28",height:"170",cup:"G",desc:"Tall, glamorous and fresh, premium elegance.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250324_190124806.webp",active:1},
+  {id:13,rank:"PREMIUM",name:"Rosemary",age:"28",height:"160",cup:"C",desc:"Warm and refined, premium-level skill.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17386327067432.webp",active:1},
+  {id:14,rank:"PREMIUM",name:"Alexander",age:"23",height:"168",cup:"C",desc:"Glamorous and hot, a premium experience awaits.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1745092578220.webp",active:1},
+  {id:15,rank:"NEW FACE",name:"Coco",age:"28",height:"165",cup:"G",desc:"Glamorous new face, stunning looks and warm charm.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17412255138022.webp",active:1},
+  {id:16,rank:"NEW FACE",name:"Christina",age:"22",height:"158",cup:"D",desc:"Fresh and cute, a wonderful new addition.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1738632706743.webp",active:1},
+  {id:17,rank:"NEW FACE",name:"Amagifu",age:"25",height:"160",cup:"F",desc:"Beautiful and charming, fresh energy you will love.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250123_203010978.webp",active:1},
+  {id:18,rank:"NEW FACE",name:"Marcy",age:"23",height:"157",cup:"D",desc:"Cute and fresh, ready to make your experience special.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1731254097017.webp",active:1},
+  {id:19,rank:"NEW FACE",name:"Mountain Dew",age:"24",height:"162",cup:"E",desc:"A unique presence, fresh and full of surprises.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1735052534887.webp",active:1},
+  {id:20,rank:"NEW FACE",name:"Andrew",age:"22",height:"163",cup:"D",desc:"Charming new face bringing a fresh spark to every session.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1737710418647.webp",active:1}
 ];
 
-var currentEditIdx = null;
-var rankFilter = 'ALL';
+function loadC(){try{var s=localStorage.getItem("mt_cast");return s?JSON.parse(s):DEFAULT_CAST;}catch(e){return DEFAULT_CAST;}}
+function saveC(){localStorage.setItem("mt_cast",JSON.stringify(CAST));}
+function loadSh(){try{var s=localStorage.getItem("mt_shifts");return s?JSON.parse(s):{};}catch(e){return {};}}
+function saveSh(){localStorage.setItem("mt_shifts",JSON.stringify(SHIFTS));}
 
-// ===== RENDER =====
-function render() {
-  var q = (document.getElementById('searchInput')||{}).value||'';
-  var list = CAST.filter(function(c,i){
-    if(q && !c.name.toLowerCase().includes(q.toLowerCase())) return false;
-    if(rankFilter==='ACTIVE') return c.active;
-    if(rankFilter!=='ALL') return c.rank===rankFilter;
-    return true;
-  });
-  var grid = document.getElementById('castGrid');
-  if(!list.length){
-    grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🔍</div><p>該当するキャストが見つかりません</p></div>';
+var CAST=loadC();
+var SHIFTS=loadSh();
+var rankFlt="ALL";
+var editIdx=null;
+var shiftDK=null;
+var weekOff=0;
+
+function dKey(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function todayDK(){return dKey(new Date());}
+
+/* ==============================
+   TABS
+============================== */
+function gotoTab(name,btn){
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("on");});
+  document.querySelectorAll(".nav-btn").forEach(function(b){b.classList.remove("on");});
+  document.getElementById("tab-"+name).classList.add("on");
+  if(btn)btn.classList.add("on");
+  var titles={today:"今日の出勤",shift:"シフト管理",cast:"キャスト管理"};
+  document.getElementById("topTitle").textContent=titles[name]||name;
+  var acts=document.getElementById("topbarActions");
+  if(name==="cast"){acts.innerHTML='<button class="btn btn-gold btn-sm" onclick="openAdd()">＋ キャスト追加</button>';}
+  else{acts.innerHTML="";}
+  if(name==="today")renderToday();
+  if(name==="shift")renderShift();
+  if(name==="cast")renderCast();
+}
+
+/* ==============================
+   TODAY
+============================== */
+function renderToday(){
+  var now=new Date();
+  var dnames=["日","月","火","水","木","金","土"];
+  var mnames=["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
+  document.getElementById("todayLabel").innerHTML=mnames[now.getMonth()]+now.getDate()+"日 <span>("+dnames[now.getDay()]+")</span>";
+  var key=todayDK();
+  var ids=SHIFTS[key]||[];
+  var todayCast=ids.map(function(id){return CAST.find(function(c){return c.id===id;});}).filter(Boolean);
+  document.getElementById("onBadge").textContent=todayCast.length+"名出勤中";
+  document.getElementById("sTotal").textContent=CAST.length;
+  document.getElementById("sToday").textContent=todayCast.length;
+  document.getElementById("sPm").textContent=CAST.filter(function(c){return c.rank==="PREMIUM";}).length;
+  document.getElementById("sSp").textContent=CAST.filter(function(c){return c.rank==="SPECIAL";}).length;
+  var grid=document.getElementById("todayGrid");
+  if(!todayCast.length){
+    grid.innerHTML='<div class="no-shift"><div class="no-shift-icon">📅</div><p>今日のシフトが登録されていません<br><br><button class="btn btn-gold btn-sm" onclick="gotoTab(\'shift\',document.querySelector(\'.nav-btn:nth-child(2)\'))">シフトを登録する</button></p></div>';
     return;
   }
-  grid.innerHTML = list.map(function(c){
-    var idx = CAST.indexOf(c);
-    var rc = c.rank==='PREMIUM'?'rank-pm':c.rank==='SPECIAL'?'rank-sp':'rank-nf';
-    return '<div class="cast-card'+(c.active?'':' inactive')+'">'
-      +'<div class="cast-photo" style="background-image:url(''+c.img+'')">'
-        +'<span class="cast-rank-badge '+rc+'">'+c.rank+'</span>'
-        +'<span class="status-dot '+(c.active?'on':'off')+'"></span>'
-        +'<div class="cast-photo-overlay">'
-          +'<button class="btn btn-sm" style="background:rgba(255,255,255,.95);color:#1a1a2e;font-size:11px;border:none;border-radius:6px;padding:6px 12px" onclick="openEdit('+idx+');event.stopPropagation()">✏ 編集</button>'
-        +'</div>'
-      +'</div>'
-      +'<div class="cast-info">'
-        +'<div class="cast-name">'+c.name+'</div>'
-        +'<div class="cast-meta">AGE '+c.age+' · T'+c.height+' ('+c.cup+')</div>'
-      +'</div>'
-      +'<div class="cast-actions">'
-        +'<button class="mini-btn '+(c.active?'on-duty':'off-duty')+'" onclick="toggleActive('+idx+');event.stopPropagation()">'
-          +(c.active?'● 出勤中':'○ 休み')
-        +'</button>'
-        +'<button class="mini-btn" onclick="openEdit('+idx+');event.stopPropagation()" style="flex:0 0 auto;width:36px">✏</button>'
-      +'</div>'
-    +'</div>';
-  }).join('');
-  updateStats();
+  grid.innerHTML=todayCast.map(function(c){
+    var rc=c.rank==="PREMIUM"?"rank-pm":c.rank==="SPECIAL"?"rank-sp":"rank-nf";
+    return '<div class="today-card"><div class="today-photo" style="background-image:url(\''+c.img+'\')">'
+      +'<span class="today-rank '+rc+'">'+c.rank+'</span>'
+      +'</div><div class="today-name">'+c.name+'</div>'
+      +'<div class="today-meta">AGE '+c.age+' T'+c.height+' ('+c.cup+')</div></div>';
+  }).join("");
 }
 
-function updateStats() {
-  document.getElementById('s-total').textContent = CAST.length;
-  document.getElementById('s-active').textContent = CAST.filter(function(c){return c.active;}).length;
-  document.getElementById('s-premium').textContent = CAST.filter(function(c){return c.rank==='PREMIUM';}).length;
-  document.getElementById('s-special').textContent = CAST.filter(function(c){return c.rank==='SPECIAL';}).length;
-  document.getElementById('topbarBadge').textContent = CAST.length+'名';
-}
-
-function applyFilter(){render();}
-function setRankFilter(r,btn){
-  rankFilter=r;
-  document.querySelectorAll('.filter-chip').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  render();
-}
-
-function toggleActive(idx){
-  CAST[idx].active=!CAST[idx].active;
-  render();
-  toast(CAST[idx].name+(CAST[idx].active?' を出勤中にしました':' を休みにしました'),'success');
-}
-
-// ===== MODAL =====
-function openEdit(idx){
-  currentEditIdx=idx;
-  var c=CAST[idx];
-  document.getElementById('modalTitle').textContent=c.name+' を編集';
-  document.getElementById('fImg').value=c.img;
-  document.getElementById('fName').value=c.name;
-  document.getElementById('fRank').value=c.rank;
-  document.getElementById('fAge').value=c.age;
-  document.getElementById('fHeight').value=c.height;
-  document.getElementById('fCup').value=c.cup;
-  document.getElementById('fActive').value=String(c.active);
-  document.getElementById('fDesc').value=c.desc||'';
-  document.getElementById('previewPhoto').style.backgroundImage="url('"+c.img+"')";
-  document.getElementById('previewName').textContent=c.name;
-  document.getElementById('previewRank').textContent=c.rank+' · AGE '+c.age+' T'+c.height+' ('+c.cup+')';
-  document.getElementById('deleteBtn').style.display='';
-  document.getElementById('modalBg').classList.add('show');
-}
-
-function openAdd(){
-  currentEditIdx=null;
-  document.getElementById('modalTitle').textContent='新規キャスト追加';
-  ['fImg','fName','fAge','fHeight','fDesc'].forEach(function(id){document.getElementById(id).value='';});
-  document.getElementById('fRank').value='NEW FACE';
-  document.getElementById('fCup').value='D';
-  document.getElementById('fActive').value='true';
-  document.getElementById('previewPhoto').style.backgroundImage='';
-  document.getElementById('previewName').textContent='新規キャスト';
-  document.getElementById('previewRank').textContent='NEW FACE';
-  document.getElementById('deleteBtn').style.display='none';
-  document.getElementById('modalBg').classList.add('show');
-}
-
-function closeModal(){
-  document.getElementById('modalBg').classList.remove('show');
-  currentEditIdx=null;
-}
-
-function updatePreview(){
-  var url=document.getElementById('fImg').value;
-  document.getElementById('previewPhoto').style.backgroundImage=url?"url('"+url+"')":'';
-}
-function updatePreviewName(){
-  document.getElementById('previewName').textContent=document.getElementById('fName').value||'—';
-}
-function updatePreviewRank(){
-  document.getElementById('previewRank').textContent=document.getElementById('fRank').value;
-}
-
-function saveCast(){
-  var data={
-    rank:document.getElementById('fRank').value,
-    name:document.getElementById('fName').value,
-    age:document.getElementById('fAge').value,
-    height:document.getElementById('fHeight').value,
-    cup:document.getElementById('fCup').value,
-    img:document.getElementById('fImg').value,
-    desc:document.getElementById('fDesc').value,
-    active:document.getElementById('fActive').value==='true'
-  };
-  if(!data.name){toast('名前を入力してください','error');return;}
-  if(currentEditIdx!==null){
-    CAST[currentEditIdx]=data;
-    toast(data.name+' を更新しました','success');
-  } else {
-    CAST.push(data);
-    toast(data.name+' を追加しました','success');
-  }
-  render();
-  closeModal();
-}
-
-function deleteCast(){
-  if(currentEditIdx===null) return;
-  var name=CAST[currentEditIdx].name;
-  if(!confirm(name+' を削除しますか？')) return;
-  CAST.splice(currentEditIdx,1);
-  render();
-  closeModal();
-  toast(name+' を削除しました');
-}
-
-// ===== TABS =====
-function switchTab(name, btn){
-  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
-  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
-  document.getElementById('tab-'+name).classList.add('active');
-  if(btn) btn.classList.add('active');
-  var titles={cast:'キャスト管理',schedule:'出勤スケジュール',lp:'LP プレビュー',settings:'設定'};
-  document.getElementById('topbarTitle').textContent=titles[name]||name;
-  document.getElementById('topbarBadge').style.display=name==='cast'?'':'none';
-  if(name==='schedule') buildSchedule();
-}
-
-// ===== SCHEDULE =====
-function buildSchedule(){
-  var days=['月','火','水','木','金','土','日'];
+/* ==============================
+   SHIFT
+============================== */
+function getWeekDates(off){
   var today=new Date();
+  var dow=today.getDay();
   var mon=new Date(today);
-  mon.setDate(today.getDate()-((today.getDay()+6)%7));
-  var grid=document.getElementById('scheduleGrid');
-  grid.innerHTML=days.map(function(d,i){
-    var date=new Date(mon);date.setDate(mon.getDate()+i);
-    var isToday=date.toDateString()===today.toDateString();
-    var active=CAST.filter(function(c){return c.active;});
-    var shown=active.slice(i*2,i*2+2);
-    return '<div class="day-card" style="'+(isToday?'border-color:var(--gold);':'')+'">'
-      +'<div class="day-header">'
-        +'<div style="'+(isToday?'color:var(--gold)':'')+'">'+(date.getMonth()+1)+'/'+(date.getDate())+'</div>'
-        +'<div>'+d+(isToday?' <span style="font-size:9px;background:var(--gold);color:#fff;padding:1px 5px;border-radius:3px;font-weight:700">TODAY</span>':'')+'</div>'
+  mon.setDate(today.getDate()-(dow===0?6:dow-1)+(off*7));
+  var arr=[];
+  for(var i=0;i<7;i++){var d=new Date(mon);d.setDate(mon.getDate()+i);arr.push(d);}
+  return arr;
+}
+function renderShift(){
+  var dates=getWeekDates(weekOff);
+  var dayNm=["月","火","水","木","金","土","日"];
+  var tdk=todayDK();
+  var f=dates[0],l=dates[6];
+  document.getElementById("weekLabel").textContent=(f.getMonth()+1)+"/"+f.getDate()+" 〜 "+(l.getMonth()+1)+"/"+l.getDate();
+  var html="";
+  dates.forEach(function(d,i){
+    var key=dKey(d);
+    var isT=key===tdk;
+    var ids=SHIFTS[key]||[];
+    var chips=ids.map(function(id){
+      var c=CAST.find(function(x){return x.id===id;});
+      if(!c)return "";
+      return '<div class="shift-chip">'+c.name
+        +'<button class="chip-del" onclick="rmShift(\''+key+'\','+id+')">&#215;</button></div>';
+    }).join("");
+    html+='<div class="day-col'+(isT?" is-today":"")+'">'
+      +'<div class="day-hd"><div class="day-dn">'+dayNm[i]+'</div><div class="day-dt">'+(d.getMonth()+1)+"/"+(d.getDate())+'</div></div>'
+      +'<div class="day-bd">'+chips
+      +'<button class="day-add" onclick="openShiftPicker(\''+key+'\')">+ 追加</button>'
+      +'</div></div>';
+  });
+  document.getElementById("weekGrid").innerHTML=html;
+  document.getElementById("shiftSelectBox").style.display="none";
+}
+function prevW(){weekOff--;renderShift();}
+function nextW(){weekOff++;renderShift();}
+function openShiftPicker(key){
+  shiftDK=key;
+  var d=new Date(key);
+  document.getElementById("shiftSelectLabel").textContent=(d.getMonth()+1)+"/"+d.getDate()+"の出勤キャストを選ぶ";
+  var cur=SHIFTS[key]||[];
+  document.getElementById("castPicker").innerHTML=CAST.map(function(c){
+    var sel=cur.indexOf(c.id)>=0;
+    var rc=c.rank==="PREMIUM"?"rank-pm":c.rank==="SPECIAL"?"rank-sp":"rank-nf";
+    return '<div class="picker-item'+(sel?" sel":"")+'" id="pi-'+c.id+'" onclick="togglePick('+c.id+')">'
+      +'<div class="picker-photo" style="background-image:url(\''+c.img+'\');position:relative">'
+      +'<span style="position:absolute;top:3px;left:3px;font-size:8px;font-weight:700;padding:1px 5px;border-radius:999px;color:#fff" class="'+rc+'">'+c.rank.charAt(0)+'</span>'
       +'</div>'
-      +shown.map(function(c){return '<div class="day-cast-chip">'+c.name+'</div>';}).join('')
-    +'</div>';
-  }).join('');
+      +'<div class="picker-name">'+c.name+'</div>'
+      +'<div class="picker-meta">T'+c.height+'</div>'
+      +'</div>';
+  }).join("");
+  var box=document.getElementById("shiftSelectBox");
+  box.style.display="";
+  setTimeout(function(){box.scrollIntoView({behavior:"smooth",block:"nearest"});},100);
+}
+function togglePick(id){
+  var el=document.getElementById("pi-"+id);
+  if(el)el.classList.toggle("sel");
+}
+function applyShift(){
+  if(!shiftDK)return;
+  var sel=[];
+  document.querySelectorAll(".picker-item.sel").forEach(function(el){
+    sel.push(parseInt(el.id.replace("pi-","")));
+  });
+  SHIFTS[shiftDK]=sel;
+  saveSh();
+  renderShift();
+  if(shiftDK===todayDK())renderToday();
+  showToast("シフトを保存しました","ok");
+}
+function rmShift(key,id){
+  if(!SHIFTS[key])return;
+  SHIFTS[key]=SHIFTS[key].filter(function(x){return x!==id;});
+  saveSh();
+  renderShift();
+  if(key===todayDK())renderToday();
+}
+function closeShiftPicker(){
+  document.getElementById("shiftSelectBox").style.display="none";
+  shiftDK=null;
 }
 
-// ===== TOAST =====
-function toast(msg,type){
-  var el=document.getElementById('toastEl');
+/* ==============================
+   CAST
+============================== */
+function setRank(r,btn){
+  rankFlt=r;
+  document.querySelectorAll(".rank-tab").forEach(function(b){b.classList.remove("on");});
+  btn.classList.add("on");
+  renderCast();
+}
+function renderCast(){
+  var q=(document.getElementById("castSearch").value||"").toLowerCase();
+  var list=CAST.filter(function(c){
+    if(q&&!c.name.toLowerCase().includes(q))return false;
+    if(rankFlt!=="ALL"&&c.rank!==rankFlt)return false;
+    return true;
+  });
+  var grid=document.getElementById("castAdminGrid");
+  if(!list.length){grid.innerHTML='<p style="color:var(--txt2);padding:24px;text-align:center">該当するキャストが見つかりません</p>';return;}
+  grid.innerHTML=list.map(function(c){
+    var idx=CAST.indexOf(c);
+    var rc=c.rank==="PREMIUM"?"rank-pm":c.rank==="SPECIAL"?"rank-sp":"rank-nf";
+    return '<div class="cast-card'+(!c.active?" inactive":"")+'">'
+      +'<div class="cast-photo" style="background-image:url(\''+c.img+'\')">'
+      +'<span class="cast-rank-badge '+rc+'">'+c.rank+'</span>'
+      +'<span class="status-pill '+(c.active?"stt-on":"stt-off")+'">'+(c.active?"● 出勤":"○ 休み")+'</span>'
+      +'<div class="cast-overlay"><button class="btn btn-wh btn-xs" onclick="openEdit('+idx+')">&#9999; 編集</button></div>'
+      +'</div>'
+      +'<div class="cast-info"><div class="cast-name">'+c.name+'</div><div class="cast-meta-t">AGE '+c.age+' · T'+c.height+' ('+c.cup+')</div></div>'
+      +'<div class="cast-actions">'
+      +'<button class="btn btn-wh btn-xs" style="flex:1" onclick="openEdit('+idx+')">&#9999; 編集</button>'
+      +'<button class="btn btn-xs '+(c.active?"btn-wh":"btn-gold")+'" style="flex:1" onclick="toggleStt('+idx+')">'+(c.active?"→休み":"→出勤")+'</button>'
+      +'</div></div>';
+  }).join("");
+}
+function toggleStt(idx){
+  CAST[idx].active=CAST[idx].active?0:1;
+  saveC();
+  renderCast();
+  showToast(CAST[idx].name+(CAST[idx].active?" を出勤中に":" を休みに")+"しました","ok");
+}
+
+/* ==============================
+   MODAL
+============================== */
+function openEdit(idx){
+  editIdx=idx;
+  var c=CAST[idx];
+  document.getElementById("modalTitle").textContent=c.name+" を編集";
+  document.getElementById("fImg").value=c.img||"";
+  document.getElementById("fName").value=c.name||"";
+  document.getElementById("fRank").value=c.rank||"NEW FACE";
+  document.getElementById("fAge").value=c.age||"";
+  document.getElementById("fHeight").value=c.height||"";
+  document.getElementById("fCup").value=c.cup||"D";
+  document.getElementById("fActive").value=c.active?1:0;
+  document.getElementById("fDesc").value=c.desc||"";
+  document.getElementById("prevPhoto").style.backgroundImage="url('"+c.img+"')";
+  document.getElementById("prevName").textContent=c.name;
+  document.getElementById("prevSub").textContent=c.rank+" · AGE "+c.age+" T"+c.height+" ("+c.cup+")";
+  document.getElementById("delBtn").style.display="";
+  document.getElementById("modalBg").classList.add("on");
+}
+function openAdd(){
+  editIdx=null;
+  document.getElementById("modalTitle").textContent="新規キャスト追加";
+  ["fImg","fName","fAge","fHeight","fDesc"].forEach(function(id){document.getElementById(id).value="";});
+  document.getElementById("fRank").value="NEW FACE";
+  document.getElementById("fCup").value="D";
+  document.getElementById("fActive").value=1;
+  document.getElementById("prevPhoto").style.backgroundImage="";
+  document.getElementById("prevName").textContent="新規キャスト";
+  document.getElementById("prevSub").textContent="NEW FACE";
+  document.getElementById("delBtn").style.display="none";
+  document.getElementById("modalBg").classList.add("on");
+}
+function closeModal(){document.getElementById("modalBg").classList.remove("on");editIdx=null;}
+function onImgChange(){
+  var u=document.getElementById("fImg").value;
+  document.getElementById("prevPhoto").style.backgroundImage=u?"url('"+u+"')":'';
+}
+function onNameChange(){document.getElementById("prevName").textContent=document.getElementById("fName").value||"-";}
+function onRankChange(){document.getElementById("prevSub").textContent=document.getElementById("fRank").value;}
+function doSave(){
+  var name=document.getElementById("fName").value.trim();
+  if(!name){showToast("名前を入力してください");return;}
+  var data={
+    rank:document.getElementById("fRank").value,
+    name:name,
+    age:document.getElementById("fAge").value,
+    height:document.getElementById("fHeight").value,
+    cup:document.getElementById("fCup").value,
+    img:document.getElementById("fImg").value,
+    desc:document.getElementById("fDesc").value,
+    active:parseInt(document.getElementById("fActive").value)
+  };
+  if(editIdx!==null){
+    data.id=CAST[editIdx].id;
+    CAST[editIdx]=data;
+    showToast(name+" を更新しました","ok");
+  }else{
+    data.id=Date.now();
+    CAST.push(data);
+    showToast(name+" を追加しました","ok");
+  }
+  saveC();
+  renderCast();
+  closeModal();
+}
+function doDelete(){
+  if(editIdx===null)return;
+  var name=CAST[editIdx].name;
+  if(!confirm(name+" を削除しますか？"))return;
+  CAST.splice(editIdx,1);
+  saveC();
+  renderCast();
+  closeModal();
+  showToast(name+" を削除しました");
+}
+document.getElementById("modalBg").addEventListener("click",function(e){if(e.target===this)closeModal();});
+
+/* ==============================
+   TOAST
+============================== */
+function showToast(msg,type){
+  var el=document.getElementById("toastEl");
   el.textContent=msg;
-  el.className='toast'+(type?' '+type:'');
+  el.className="toast"+(type?" "+type:"");
   void el.offsetWidth;
-  el.classList.add('show');
+  el.classList.add("on");
   clearTimeout(el._t);
-  el._t=setTimeout(function(){el.classList.remove('show');},2500);
+  el._t=setTimeout(function(){el.classList.remove("on");},2500);
 }
 
-function refreshData(){render();toast('更新しました','success');}
-
-// ===== MODAL CLOSE ON BG =====
-document.getElementById('modalBg').addEventListener('click',function(e){if(e.target===this)closeModal();});
-
-// ===== INIT =====
-render();
+/* ==============================
+   INIT
+============================== */
+renderToday();
 </script>
 </body>
 </html>
