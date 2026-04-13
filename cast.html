@@ -54,6 +54,10 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border
 .btn-line{background:#06c755;color:#fff;text-align:center;padding:.9rem;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;display:block;transition:filter .3s}.btn-line:hover{filter:brightness(1.1)}
 .btn-close{background:rgba(255,255,255,.07);color:rgba(255,255,255,.55);text-align:center;padding:.8rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;border:1px solid rgba(255,255,255,.1)}.btn-close:hover{background:rgba(255,255,255,.15)}
 .modal-x{position:absolute;top:.9rem;right:.9rem;width:34px;height:34px;background:rgba(255,255,255,.1);color:var(--w);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;z-index:10;transition:background .3s}.modal-x:hover{background:var(--gold)}
+.msns{display:flex;gap:.65rem}
+.msns a{flex:1;text-align:center;padding:.6rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.65);transition:all .25s}.msns a:hover{border-color:var(--gold);color:var(--gold)}
+.insta-bar{background:#e1306c;color:#fff;text-align:center;padding:1rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:.65rem}
+.insta-bar svg{width:18px;height:18px;fill:#fff}
 .bar{position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex}
 .bi{flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.95rem;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;transition:filter .3s}.bi:hover{filter:brightness(1.1)}
 .bln{background:#06c755;color:#fff}.bml{background:#333;color:#fff}.brv{background:var(--gold);color:#fff}
@@ -96,6 +100,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border
         <div class="mstat"><span class="mstatlbl">Rank</span><div class="mstatval" id="mRankVal" style="font-size:.82rem"></div></div>
       </div>
       <p class="mdesc" id="mDesc"></p>
+      <div class="msns" id="mSns" style="display:none;gap:.65rem"></div>
       <div class="mbtns">
         <a href="https://line.me/R/ti/p/@happyend_ginza" class="btn-line" target="_blank">Book via LINE</a>
         <div class="btn-close" onclick="closeModal()">Close</div>
@@ -103,29 +108,33 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border
     </div>
   </div>
 </div>
+<a href="https://instagram.com/happyend_ginza" target="_blank" class="insta-bar">
+  <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+  Follow us on Instagram @happyend_ginza
+</a>
 <div class="bar"><a href="https://line.me/R/ti/p/@happyend_ginza" class="bi bln" target="_blank">LINE</a><a href="mailto:ginza.esthe@gmail.com" class="bi bml">Email</a><a href="https://line.me/R/ti/p/@happyend_ginza" class="bi brv" target="_blank">Book Now</a></div>
 <script>
 const CAST=[
-  {rank:"NEW FACE",name:"Airis",age:"26",height:"163",cup:"D",desc:"Irresistibly cute with maximum charm and a sexy edge.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/04/1775374488393.jpg"},
-  {rank:"NEW FACE",name:"Paypay",age:"24",height:"153",cup:"D",desc:"So charming you can't help but feel completely healed.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/01/1769063443347.webp"},
-  {rank:"NEW FACE",name:"Margaret",age:"21",height:"155",cup:"D",desc:"Fresh and cute — a new face you won't forget.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1745092578220.webp"},
-  {rank:"PREMIUM",name:"Lilian",age:"22",height:"159",cup:"H",desc:"Premium-class beauty with captivating presence.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250324_190124806.webp"},
-  {rank:"NEW FACE",name:"Casablanca",age:"25",height:"156",cup:"F",desc:"Glamorous and cute — an unforgettable combination.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17386327067432.webp"},
-  {rank:"PREMIUM",name:"Salamander",age:"20",height:"159",cup:"B",desc:"Fresh, youthful energy with premium-level skill.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250123_203010978.webp"},
-  {rank:"NEW FACE",name:"Murasaki",age:"24",height:"163",cup:"E",desc:"Elegant and mysterious — a fresh face with deep charm.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17412255138022.webp"},
-  {rank:"PREMIUM",name:"Blair",age:"26",height:"153",cup:"C",desc:"Glamorous and fresh — premium quality guaranteed.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1737710418647.webp"},
-  {rank:"SPECIAL",name:"Suzanne",age:"26",height:"162",cup:"E",desc:"The Perfect Mixed-Beauty with Looks, Aura, and Style in One.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1735052534887.webp"},
-  {rank:"PREMIUM",name:"Sophia",age:"27",height:"159",cup:"H",desc:"Glamorous premium beauty — sophisticated and sensual.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1731254097017.webp"},
-  {rank:"NEW FACE",name:"Nicola",age:"22",height:"152",cup:"D",desc:"Cute and fresh — a new face full of energy.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1738632706743.webp"},
-  {rank:"PREMIUM",name:"Juliana",age:"28",height:"170",cup:"G",desc:"Tall, glamorous and fresh — premium elegance.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250324_190124806.webp"},
-  {rank:"PREMIUM",name:"Rosemary",age:"28",height:"160",cup:"C",desc:"Warm and refined — premium-level skill with a gentle touch.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17386327067432.webp"},
-  {rank:"PREMIUM",name:"Alexander",age:"23",height:"168",cup:"C",desc:"Glamorous and hot — a premium experience awaits.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1745092578220.webp"},
-  {rank:"NEW FACE",name:"Coco",age:"28",height:"165",cup:"G",desc:"Glamorous new face — stunning looks and warm charm.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17412255138022.webp"},
-  {rank:"NEW FACE",name:"Christina",age:"22",height:"158",cup:"D",desc:"Fresh and cute — a wonderful new addition to our team.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1738632706743.webp"},
-  {rank:"NEW FACE",name:"Amagifu",age:"25",height:"160",cup:"F",desc:"Beautiful and charming — fresh energy you will love.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250123_203010978.webp"},
-  {rank:"NEW FACE",name:"Marcy",age:"23",height:"157",cup:"D",desc:"Cute and fresh — ready to make your experience special.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1731254097017.webp"},
-  {rank:"NEW FACE",name:"Mountain Dew",age:"24",height:"162",cup:"E",desc:"A unique presence — fresh and full of surprises.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1735052534887.webp"},
-  {rank:"NEW FACE",name:"Andrew",age:"22",height:"163",cup:"D",desc:"Charming new face bringing a fresh spark to every session.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1737710418647.webp"}
+  {rank:"NEW FACE",name:"Airis",age:"26",height:"163",cup:"D",desc:"Irresistibly cute with maximum charm and a sexy edge.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/04/1775374488393.jpg",tw:"",ig:""},
+  {rank:"NEW FACE",name:"Paypay",age:"24",height:"153",cup:"D",desc:"So charming you can't help but feel completely healed.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/01/1769063443347.webp",tw:"",ig:""},
+  {rank:"NEW FACE",name:"Margaret",age:"21",height:"155",cup:"D",desc:"Fresh and cute — a new face you won't forget.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1745092578220.webp",tw:"",ig:""},
+  {rank:"PREMIUM",name:"Lilian",age:"22",height:"159",cup:"H",desc:"Premium-class beauty with captivating presence.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250324_190124806.webp",tw:"",ig:""},
+  {rank:"NEW FACE",name:"Casablanca",age:"25",height:"156",cup:"F",desc:"Glamorous and cute — an unforgettable combination.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17386327067432.webp",tw:"",ig:""},
+  {rank:"PREMIUM",name:"Salamander",age:"20",height:"159",cup:"B",desc:"Fresh, youthful energy with premium-level skill.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250123_203010978.webp",tw:"",ig:""},
+  {rank:"NEW FACE",name:"Murasaki",age:"24",height:"163",cup:"E",desc:"Elegant and mysterious — a fresh face with deep charm.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17412255138022.webp",tw:"",ig:""},
+  {rank:"PREMIUM",name:"Blair",age:"26",height:"153",cup:"C",desc:"Glamorous and fresh — premium quality guaranteed.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1737710418647.webp",tw:"",ig:""},
+  {rank:"SPECIAL",name:"Suzanne",age:"26",height:"162",cup:"E",desc:"The Perfect Mixed-Beauty with Looks, Aura, and Style in One.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1735052534887.webp",tw:"",ig:""},
+  {rank:"PREMIUM",name:"Sophia",age:"27",height:"159",cup:"H",desc:"Glamorous premium beauty — sophisticated and sensual.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1731254097017.webp",tw:"",ig:""},
+  {rank:"NEW FACE",name:"Nicola",age:"22",height:"152",cup:"D",desc:"Cute and fresh — a new face full of energy.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1738632706743.webp",tw:"",ig:""},
+  {rank:"PREMIUM",name:"Juliana",age:"28",height:"170",cup:"G",desc:"Tall, glamorous and fresh — premium elegance.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250324_190124806.webp",tw:"",ig:""},
+  {rank:"PREMIUM",name:"Rosemary",age:"28",height:"160",cup:"C",desc:"Warm and refined — premium-level skill.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17386327067432.webp",tw:"",ig:""},
+  {rank:"PREMIUM",name:"Alexander",age:"23",height:"168",cup:"C",desc:"Glamorous and hot — a premium experience awaits.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1745092578220.webp",tw:"",ig:""},
+  {rank:"NEW FACE",name:"Coco",age:"28",height:"165",cup:"G",desc:"Glamorous new face — stunning looks and warm charm.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/17412255138022.webp",tw:"",ig:""},
+  {rank:"NEW FACE",name:"Christina",age:"22",height:"158",cup:"D",desc:"Fresh and cute — a wonderful new addition.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1738632706743.webp",tw:"",ig:""},
+  {rank:"NEW FACE",name:"Amagifu",age:"25",height:"160",cup:"F",desc:"Beautiful and charming — fresh energy you will love.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/MEITU_20250123_203010978.webp",tw:"",ig:""},
+  {rank:"NEW FACE",name:"Marcy",age:"23",height:"157",cup:"D",desc:"Cute and fresh — ready to make your experience special.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1731254097017.webp",tw:"",ig:""},
+  {rank:"NEW FACE",name:"Mountain Dew",age:"24",height:"162",cup:"E",desc:"A unique presence — fresh and full of surprises.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1735052534887.webp",tw:"",ig:""},
+  {rank:"NEW FACE",name:"Andrew",age:"22",height:"163",cup:"D",desc:"Charming new face bringing a fresh spark to every session.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1737710418647.webp",tw:"",ig:""}
 ];
 function renderCast(filter){
   const grid=document.getElementById('castGrid');
@@ -153,6 +162,10 @@ function openModal(idx){
   document.getElementById('mCup').textContent='('+c.cup+')';
   document.getElementById('mRankVal').textContent=c.rank;
   document.getElementById('mDesc').textContent=c.desc;
+  const sns=document.getElementById('mSns');let sh='';
+  if(c.tw) sh+='<a href="https://x.com/'+c.tw+'" target="_blank">X / Twitter</a>';
+  if(c.ig) sh+='<a href="https://instagram.com/'+c.ig+'" target="_blank">Instagram</a>';
+  sns.innerHTML=sh;sns.style.display=sh?'flex':'none';
   const bg=document.getElementById('modalBg');bg.classList.add('show');document.body.style.overflow='hidden';
   bg.onclick=function(e){if(e.target===bg)closeModal();};
 }
