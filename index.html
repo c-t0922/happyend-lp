@@ -121,22 +121,25 @@ header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,
 /* CAST */
 .castsec{background:var(--w)}
 /* TODAY LINEUP */
-.lineup-sec{background:var(--bg)}
-.lineup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1.25rem}
-.lineup-card{background:var(--w);border-radius:10px;overflow:hidden;border:1px solid var(--bd);transition:transform .25s,box-shadow .25s}
-.lineup-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px var(--sh)}
-.lineup-photo{width:100%;aspect-ratio:3/4;background-size:cover;background-position:center top;position:relative}
-.lineup-time{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.62);padding:5px 8px;font-size:10px;color:#fff;font-weight:500;display:flex;align-items:center;gap:4px;letter-spacing:.02em}
-.lineup-time svg{width:10px;height:10px;flex-shrink:0;opacity:.85}
-.lineup-rank{position:absolute;top:7px;left:7px;font-size:9px;font-weight:700;padding:2px 6px;border-radius:999px;color:#fff;text-transform:uppercase}
-.lineup-name{padding:8px 10px 4px;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;letter-spacing:.03em}
-.lineup-meta{padding:0 10px 9px;font-size:.65rem;color:var(--gl);letter-spacing:.05em}
-.lineup-live-badge{display:inline-flex;align-items:center;gap:5px;background:#ecfdf5;color:var(--green,#34c759);font-size:.58rem;font-weight:600;padding:4px 12px;border-radius:999px;border:1px solid rgba(52,199,89,.2);margin-top:.75rem}
-.lineup-live-dot{width:6px;height:6px;border-radius:50%;background:var(--green,#34c759);animation:lpulse 1.4s infinite}
+.lineup-sec{background:var(--w)}
+.lineup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1.5rem}
+.lineup-card{background:var(--bg);overflow:hidden;cursor:pointer;transition:transform .25s}
+.lineup-card:hover{transform:translateY(-4px)}
+.lineup-card:hover .lineup-photo{transform:scale(1.04)}
+.lineup-photo-wrap{overflow:hidden}
+.lineup-photo{width:100%;aspect-ratio:3/4;background-size:cover;background-position:center top;position:relative;transition:transform .5s;display:block}
+.lineup-rank-badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:700;padding:2px 7px;border-radius:999px;color:#fff;text-transform:uppercase;letter-spacing:.04em}
+.lineup-time-bar{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:1.2rem .75rem .6rem;display:flex;align-items:center;gap:4px;color:#fff;font-size:10px;font-weight:500;letter-spacing:.03em}
+.lineup-time-bar svg{width:10px;height:10px;flex-shrink:0;opacity:.8}
+.lineup-name{font-family:"Cormorant Garamond",serif;font-size:1.05rem;font-weight:300;padding:.75rem .75rem .2rem;display:block;letter-spacing:.03em}
+.lineup-meta{font-size:.65rem;color:var(--gl);padding:0 .75rem .75rem;letter-spacing:.05em}
+.lineup-empty{text-align:center;padding:3rem 1rem;color:var(--gl);grid-column:1/-1}
+.lineup-empty-icon{width:48px;height:48px;margin:0 auto 1rem;background:var(--bg);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--gl)}
+.lineup-empty-icon svg{width:26px;height:26px}
+.lineup-empty p{font-size:.82rem;line-height:1.8}
+.lineup-live-pill{display:inline-flex;align-items:center;gap:6px;background:#ecfdf5;color:#16a34a;font-size:.58rem;font-weight:600;padding:5px 14px;border-radius:999px;border:1px solid rgba(52,199,89,.25)}
+.lineup-live-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:lpulse 1.4s infinite}
 @keyframes lpulse{0%,100%{opacity:1}50%{opacity:.3}}
-.no-lineup{text-align:center;padding:2.5rem 1rem;color:var(--gl)}
-.no-lineup svg{width:36px;height:36px;margin:0 auto .75rem;display:block;opacity:.35}
-.no-lineup p{font-size:.82rem;line-height:1.8}
 .cg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .cc{overflow:hidden;position:relative;cursor:pointer;transition:transform .3s}.cc:hover{transform:translateY(-3px)}.cc:hover .cbgi{transform:scale(1.05)}
 .cbgi{width:100%;aspect-ratio:3/4;background-size:cover;background-position:center top;transition:transform .6s;display:block}
@@ -238,8 +241,9 @@ footer{background:var(--b);color:var(--w);padding:3.5rem 0 2rem}
 <nav class="mob" id="mob">
   <span class="mobx" onclick="cm()">&#10005;</span>
   <nav>
+    <a href="#lineup" onclick="cm()">Today's Lineup</a>
     <a href="#about" onclick="cm()">About</a>
-    <a href="#cast" onclick="cm()">Cast</a>
+    <a href="#cast" onclick="cm()">Full Cast</a>
     <a href="#price" onclick="cm()">Pricing</a>
     <a href="#flow" onclick="cm()">How It Works</a>
     <a href="#faq" onclick="cm()">FAQ</a>
@@ -378,12 +382,15 @@ footer{background:var(--b);color:var(--w);padding:3.5rem 0 2rem}
 <section class="sec lineup-sec" id="lineup">
   <div class="si">
     <div class="sh">
-      <span class="sen">Live Schedule</span>
-      <h2 class="sja">Available Today</h2>
+      <span class="sen">Today's Schedule</span>
+      <h2 class="sja">Tonight's Lineup</h2>
       <div class="dv"></div>
-      <div id="lineupBadge" style="display:none;justify-content:center;margin-top:.75rem"></div>
+      <p class="ssub" id="lineupSub">Loading today's cast...</p>
     </div>
     <div id="lineupGrid"></div>
+    <div style="text-align:center;margin-top:2.25rem">
+      <a href="https://line.me/R/ti/p/@happyend_ginza" class="bgold" target="_blank">Book via LINE</a>
+    </div>
   </div>
 </section>
 
@@ -528,41 +535,71 @@ footer{background:var(--b);color:var(--w);padding:3.5rem 0 2rem}
 
 /* ========== TODAY LINEUP from admin localStorage ========== */
 function renderLineup(){
-  try{
+  var todayKey=(function(){
     var d=new Date();
-    var todayKey=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  })();
+
+  var grid=document.getElementById("lineupGrid");
+  var sub=document.getElementById("lineupSub");
+  if(!grid)return;
+
+  try{
     var shifts=JSON.parse(localStorage.getItem("mt_shifts2")||"{}");
-    var castData=JSON.parse(localStorage.getItem("mt_cast")||"null");
+    var castRaw=localStorage.getItem("mt_cast");
+    var allCast=castRaw?JSON.parse(castRaw):null;
     var entries=shifts[todayKey]||[];
-    var badge=document.getElementById("lineupBadge");
-    var grid=document.getElementById("lineupGrid");
+
     if(!entries.length){
-      grid.innerHTML='<div class="no-lineup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><p>Today's schedule is being updated.<br>Please contact us via LINE to check availability.</p></div>';
-      badge.style.display="none";
+      // シフト未登録
+      grid.innerHTML='<div class="lineup-grid"><div class="lineup-empty">'
+        +'<div class="lineup-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>'
+        +'<p>Today's schedule is being prepared.<br>Please contact us via LINE for current availability.</p>'
+        +'</div></div>';
+      if(sub)sub.textContent="Contact us via LINE for today\'s availability";
       return;
     }
-    badge.innerHTML='<span class="lineup-live-badge"><span class="lineup-live-dot"></span>'+entries.length+' therapists available today</span>';
-    badge.style.display="flex";
-    var allCast=castData||[];
-    grid.innerHTML='<div class="lineup-grid">'+entries.map(function(e){
-      var c=allCast.find(function(x){return x.id===e.id;});
+
+    if(sub){
+      sub.innerHTML='<span class="lineup-live-pill"><span class="lineup-live-dot"></span>'+entries.length+' therapists available today</span>';
+    }
+
+    var cards=entries.map(function(e){
+      // allCastがあればそこから、なければデフォルトCASTから探す
+      var c=allCast
+        ?allCast.find(function(x){return x.id===e.id;})
+        :CAST.find(function(x){return x.id===e.id;});
       if(!c)return "";
-      var rankColor=c.rank==="PREMIUM"?"var(--gold)":c.rank==="SPECIAL"?"#8b5cf6":"#4caf50";
-      var timeStr=(e.start&&e.end)?e.start+"–"+e.end:"";
+      var rankColor=c.rank==="PREMIUM"?"#b8986a":c.rank==="SPECIAL"?"#8b5cf6":"#34c759";
+      var timeStr=(e.start&&e.end)?(e.start+" – "+e.end):"";
+      // imgのURLをシングルクォートで安全に構築
+      var imgStyle="background-image:url('"+c.img.replace(/'/g,"\'")+"')";
       return '<div class="lineup-card">'
-        +'<div class="lineup-photo" style="background-image:url(''+c.img+'')">'
-        +'<span class="lineup-rank" style="background:'+rankColor+'">'+c.rank+'</span>'
-        +(timeStr?'<div class="lineup-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>'+timeStr+'</div>':'')
-        +'</div>'
-        +'<div class="lineup-name">'+c.name+'</div>'
-        +'<div class="lineup-meta">Age '+c.age+' · T'+c.height+' ('+c.cup+')</div>'
+        +'<div class="lineup-photo-wrap">'
+        +'<div class="lineup-photo" style="'+imgStyle+'">'
+        +'<span class="lineup-rank-badge" style="background:'+rankColor+'">'+c.rank+'</span>'
+        +(timeStr
+          ?'<div class="lineup-time-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>'+timeStr+'</div>'
+          :'')
+        +'</div></div>'
+        +'<span class="lineup-name">'+c.name+'</span>'
+        +'<div class="lineup-meta">Age '+c.age+' · '+c.height+'cm ('+c.cup+')</div>'
         +'</div>';
-    }).filter(Boolean).join("")+'</div>';
+    }).filter(Boolean);
+
+    if(!cards.length){
+      grid.innerHTML='<div class="lineup-grid"><div class="lineup-empty"><p>Schedule data is updating. Please check back soon.</p></div></div>';
+      return;
+    }
+    grid.innerHTML='<div class="lineup-grid">'+cards.join("")+'</div>';
+
   }catch(err){
-    var grid2=document.getElementById("lineupGrid");
-    if(grid2)grid2.innerHTML='';
+    console.error("renderLineup error:",err);
+    if(sub)sub.textContent="Please contact us via LINE for today\'s lineup.";
+    grid.innerHTML='';
   }
 }
+
 const CAST=[
   {rank:"NEW FACE",name:"Airis",age:"26",height:"163",cup:"D",desc:"Irresistibly cute with maximum charm and a sexy edge.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/04/1775374488393.jpg",tw:"",ig:""},
   {rank:"NEW FACE",name:"Paypay",age:"24",height:"153",cup:"D",desc:"So charming you can't help but feel completely healed.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/01/1769063443347.webp",tw:"",ig:""},
