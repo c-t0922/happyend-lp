@@ -88,13 +88,12 @@ header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,
 .vlay{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
 .vtxt h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;line-height:1.4;margin-bottom:1.25rem}
 .vtxt p{font-size:.88rem;color:var(--g);line-height:2;margin-bottom:1.25rem}
-.vwp{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;cursor:pointer;border-radius:4px}
-.vwp iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-.vthumb{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .4s}.vwp:hover .vthumb{transform:scale(1.03)}
-.vplay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.3);transition:background .3s}.vwp:hover .vplay{background:rgba(0,0,0,.48)}
-.vplay-btn{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;transition:transform .3s,box-shadow .3s;box-shadow:0 4px 24px rgba(0,0,0,.35)}.vwp:hover .vplay-btn{transform:scale(1.12)}
-.vplay-btn svg{width:30px;height:30px;fill:var(--b);margin-left:5px}
-.vplay-label{margin-top:1rem;color:rgba(255,255,255,.9);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;font-weight:500}
+.yt-wrap{display:block;position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;background:#111;cursor:pointer;border-radius:4px;text-decoration:none}
+.yt-thumb{position:absolute;inset:0;background-image:url('https://best-massage-tokyo.com/wp-content/uploads/2025/03/a3aa.jpg');background-size:cover;background-position:center;transition:transform .5s}.yt-wrap:hover .yt-thumb{transform:scale(1.04)}
+.yt-overlay{position:absolute;inset:0;background:rgba(0,0,0,.38);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .3s}.yt-wrap:hover .yt-overlay{background:rgba(0,0,0,.52)}
+.yt-play-btn{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;transition:transform .3s,box-shadow .3s;box-shadow:0 4px 28px rgba(0,0,0,.4);margin-bottom:1rem}.yt-wrap:hover .yt-play-btn{transform:scale(1.1);box-shadow:0 8px 36px rgba(0,0,0,.5)}
+.yt-play-btn svg{width:32px;height:32px;fill:#1a1a1a;margin-left:5px}
+.yt-label{color:rgba(255,255,255,.9);font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;font-weight:500;background:rgba(0,0,0,.45);padding:.4rem 1rem;border:1px solid rgba(255,255,255,.25)}
 /* INTRO */
 .intro-sec{background:var(--b);color:var(--w);padding:5rem 0}
 .intro-inner{max-width:960px;margin:0 auto;padding:0 1.5rem;text-align:center}
@@ -312,22 +311,15 @@ footer{background:var(--b);color:var(--w);padding:3.5rem 0 2rem}
   <div class="si"><div class="vlay">
     <div class="vtxt"><span class="sen">Our Story</span><h2>Tokyo's Premier<br>Private Massage Studio</h2><div class="dv" style="margin-left:0"></div><p>Massage Tokyo is a fully private men's relaxation studio located in Ginza and Kayabacho. Our English-speaking therapists are dedicated to delivering an unforgettable experience in a completely discreet setting.</p><p>Foreigners are warmly welcomed. No Japanese required. Private rooms, no cameras, 100% confidential.</p><a href="https://line.me/R/ti/p/@happyend_ginza" class="bblk" target="_blank" style="margin-top:.5rem">Book via LINE</a></div>
     <div>
-      <div style="position:relative">
-        <div class="vwp" id="videoWrap">
-          <iframe id="ytIframe"
-            src="https://www.youtube.com/embed/YObRbE9LYSY?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=YObRbE9LYSY"
-            title="Massage Tokyo – Best Massage in Ginza"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            loading="lazy">
-          </iframe>
+      <a href="https://www.youtube.com/watch?v=YObRbE9LYSY" target="_blank" class="yt-wrap" id="ytLink">
+        <div class="yt-thumb"></div>
+        <div class="yt-overlay">
+          <div class="yt-play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <div class="yt-label">Watch on YouTube</div>
         </div>
-        <button id="unmuteBtn" onclick="unmuteVideo()" style="position:absolute;bottom:.75rem;right:.75rem;background:rgba(0,0,0,.7);color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:4px;padding:.4rem .85rem;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:.4rem;font-family:inherit;transition:background .2s">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-          Muted — Tap to Unmute
-        </button>
-      </div>
+      </a>
     </div>
   </div></div>
 </section>
@@ -532,17 +524,7 @@ function openModal(idx){
   bg.onclick=function(e){if(e.target===bg)closeModal();};
 }
 function closeModal(){document.getElementById('modalBg').classList.remove('show');document.body.style.overflow='';}
-function unmuteVideo(){
-  var iframe = document.getElementById('ytIframe');
-  // YouTube postMessage API でミュート解除
-  iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}','*');
-  var btn = document.getElementById('unmuteBtn');
-  if(btn){
-    btn.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Sound ON';
-    btn.style.background='rgba(184,152,106,.85)';
-    btn.style.borderColor='var(--gold)';
-  }
-}
+
 if('ontouchstart' in window){document.querySelectorAll('.ctap-hint').forEach(el=>el.style.opacity='1');}
 let c=0;const sl=document.querySelectorAll('.slide');const dt=document.getElementById('sdots');let tm;
 sl.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' on':'');d.onclick=()=>go(i);dt.appendChild(d);});

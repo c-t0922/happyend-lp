@@ -3,116 +3,200 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-<meta name="description" content="Massage Tokyo – Tonight's Cast. Meet our beautiful English-speaking therapists in Ginza, Tokyo.">
+<meta name="description" content="Massage Tokyo – Tonight's Cast. Meet our beautiful English-speaking therapists in Ginza & Kayabacho, Tokyo.">
 <title>Cast | Massage Tokyo – Best Massage in Ginza</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--w:#fff;--b:#1a1a1a;--g:#555;--gl:#888;--bg:#faf9f7;--gold:#b8986a;--bd:#eee;--sh:0 1px 3px rgba(0,0,0,.08)}
-html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;color:var(--b);background:var(--bg);overflow-x:hidden;padding-bottom:60px;max-width:100vw}
+:root{
+  --w:#fff;--b:#1a1a1a;--g:#555;--gl:#888;
+  --bg:#faf9f7;--gold:#b8986a;--glt:#d4b98a;--bd:#eee;--sh:rgba(0,0,0,.08)
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--b);background:var(--bg);overflow-x:hidden;padding-bottom:60px;max-width:100vw;line-height:1.7}
 a{text-decoration:none;color:inherit}
-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--bd);height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;backdrop-filter:blur(8px)}
+/* HEADER */
+header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);border-bottom:1px solid var(--bd);height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;backdrop-filter:blur(8px)}
 .logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;letter-spacing:.12em;line-height:1.2}
 .logo span{display:block;font-size:.5rem;letter-spacing:.4em;color:var(--gl);margin-top:.2rem;text-transform:uppercase}
-.hback{display:flex;align-items:center;gap:.5rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);cursor:pointer;transition:color .3s}.hback:hover{color:var(--gold)}
-.hback svg{width:16px;height:16px;flex-shrink:0}
+.hright{display:flex;align-items:center;gap:1.25rem}
+.hback{display:flex;align-items:center;gap:.5rem;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);transition:color .25s}.hback:hover{color:var(--gold)}
+.hback svg{width:15px;height:15px;flex-shrink:0}
 .btnr{background:var(--b);color:var(--w);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;padding:.65rem 1.4rem;transition:background .3s;white-space:nowrap}.btnr:hover{background:var(--gold)}
-.page-hero{background:var(--b);color:var(--w);padding:4.5rem 1.5rem 3.5rem;text-align:center}
-.page-hero .sen{font-size:.58rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;display:block}
-.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;letter-spacing:.05em;margin-bottom:.85rem}
-.page-hero p{font-size:.82rem;color:rgba(255,255,255,.58);letter-spacing:.05em}
-.filter-bar{background:var(--w);border-bottom:1px solid var(--bd);padding:.85rem 1.5rem;display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;position:sticky;top:72px;z-index:99}
-.filter-btn{padding:.45rem 1.1rem;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border:1px solid var(--bd);background:transparent;color:var(--g);font-family:inherit;transition:all .2s}
-.filter-btn.active,.filter-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(184,152,106,.06)}
-.cast-section{max-width:1200px;margin:0 auto;padding:2.5rem 1.5rem}
-.cast-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
-.cast-card{cursor:pointer;overflow:hidden;position:relative;transition:transform .3s}.cast-card:hover{transform:translateY(-4px)}.cast-card:hover .cbgi{transform:scale(1.06)}
-.cbgi{width:100%;aspect-ratio:3/4;background-size:cover;background-position:center top;transition:transform .6s;display:block}
-.crnk{position:absolute;top:.65rem;left:.65rem;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;padding:.28rem .62rem;color:var(--w);font-weight:600;z-index:1}
-.crnk.nf{background:#4caf50}.crnk.pm{background:var(--gold)}.crnk.sp{background:#9c27b0}
-.ctap-hint{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.72));padding:2rem 1rem .75rem;color:var(--w);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;text-align:center;opacity:0;transition:opacity .3s}
-.cast-card:hover .ctap-hint{opacity:1}
-.cinfo{padding:.85rem 0}
-.cname{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;display:block;margin-bottom:.2rem}
-.cmeta{font-size:.7rem;color:var(--gl);letter-spacing:.08em}
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:2000;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(6px)}
+
+/* HERO */
+.page-hero{position:relative;background:var(--b);color:var(--w);padding:5rem 1.5rem 4rem;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-image:url('https://best-massage-tokyo.com/wp-content/uploads/2025/03/a3aa.jpg');background-size:cover;background-position:center top;opacity:.22}
+.hero-in{position:relative;z-index:1}
+.sen{font-size:.58rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem;display:block}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,4.5rem);font-weight:300;letter-spacing:.06em;line-height:1.2;margin-bottom:.85rem}
+.page-hero .sub{font-size:.75rem;color:rgba(255,255,255,.5);letter-spacing:.08em}
+.hero-dv{width:36px;height:1px;background:var(--gold);margin:.85rem auto}
+
+/* MARQUEE */
+.mq{background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:.65rem 0;overflow:hidden;white-space:nowrap}
+.mqi{display:inline-flex;gap:2.5rem;animation:mq 28s linear infinite}
+.mqi span{font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.45)}.mqi .sp{color:var(--gold)}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* FILTER BAR */
+.filter-wrap{background:var(--w);border-bottom:1px solid var(--bd);padding:.85rem 1.5rem;display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;position:sticky;top:72px;z-index:99}
+.filter-label{font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gl);margin-right:.25rem}
+.fbtn{padding:.5rem 1.25rem;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border:1px solid var(--bd);background:transparent;color:var(--g);font-family:inherit;transition:all .2s;border-radius:0}
+.fbtn.on,.fbtn:hover{border-color:var(--gold);color:var(--gold);background:rgba(184,152,106,.06)}
+
+/* CAST GRID */
+.cast-wrap{max-width:1240px;margin:0 auto;padding:3rem 1.5rem}
+.cast-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.cast-card{cursor:pointer;overflow:hidden;position:relative;transition:transform .3s}
+.cast-card:hover{transform:translateY(-5px)}
+.cast-card:hover .cbgi{transform:scale(1.06)}
+.cbgi{width:100%;aspect-ratio:3/4;background-size:cover;background-position:center top;transition:transform .7s;display:block;position:relative}
+.crnk{position:absolute;top:.75rem;left:.75rem;font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;padding:.3rem .7rem;color:var(--w);font-weight:600;z-index:2}
+.rk-nf{background:#4caf50}.rk-pm{background:var(--gold)}.rk-sp{background:#9c27b0}
+.hover-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,0) 55%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;justify-content:center;padding-bottom:1rem}
+.cast-card:hover .hover-overlay{opacity:1}
+.hover-lbl{color:rgba(255,255,255,.9);font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:.2rem}
+.cinfo{padding:.85rem 0 0}
+.cname{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;display:block;margin-bottom:.2rem;letter-spacing:.04em}
+.cmeta{font-size:.68rem;color:var(--gl);letter-spacing:.06em}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:3000;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(8px)}
 .modal-bg.show{display:flex}
-.modal{background:var(--b);color:var(--w);width:min(760px,100%);max-height:92vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;position:relative}
-.modal-img{background-size:cover;background-position:center top;min-height:360px}
-.modal-body{padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:center;gap:1.5rem}
-.mrb{font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;display:inline-block;padding:.32rem .75rem;color:var(--w);margin-bottom:.2rem}
-.mrb.nf{background:#4caf50}.mrb.pm{background:var(--gold)}.mrb.sp{background:#9c27b0}
-.mname{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;letter-spacing:.06em;line-height:1.1}
-.mdiv{width:30px;height:1px;background:var(--gold)}
-.mstats{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.mstat{border:1px solid rgba(255,255,255,.1);padding:.8rem .9rem}
-.mstatlbl{font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.25rem;display:block}
-.mstatval{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300}
-.mdesc{font-size:.8rem;color:rgba(255,255,255,.65);line-height:2;font-style:italic}
-.mbtns{display:flex;flex-direction:column;gap:.65rem}
-.btn-line{background:#06c755;color:#fff;text-align:center;padding:.9rem;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;display:block;transition:filter .3s}.btn-line:hover{filter:brightness(1.1)}
-.btn-close{background:rgba(255,255,255,.07);color:rgba(255,255,255,.55);text-align:center;padding:.8rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;border:1px solid rgba(255,255,255,.1)}.btn-close:hover{background:rgba(255,255,255,.15)}
-.modal-x{position:absolute;top:.9rem;right:.9rem;width:34px;height:34px;background:rgba(255,255,255,.1);color:var(--w);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;z-index:10;transition:background .3s}.modal-x:hover{background:var(--gold)}
-.msns{display:flex;gap:.65rem}
-.msns a{flex:1;text-align:center;padding:.6rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.65);transition:all .25s}.msns a:hover{border-color:var(--gold);color:var(--gold)}
-.insta-bar{background:#e1306c;color:#fff;text-align:center;padding:1rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:.65rem}
-.insta-bar svg{width:18px;height:18px;fill:#fff}
+.modal{background:var(--b);color:var(--w);width:min(800px,100%);max-height:92vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;position:relative}
+.modal-photo{background-size:cover;background-position:center top;min-height:400px}
+.modal-body{padding:2.75rem 2.25rem;display:flex;flex-direction:column;justify-content:center;gap:1.5rem}
+.m-rank{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;display:inline-block;padding:.32rem .8rem;color:var(--w);margin-bottom:.35rem}
+.m-rank.nf{background:#4caf50}.m-rank.pm{background:var(--gold)}.m-rank.sp{background:#9c27b0}
+.m-name{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;letter-spacing:.06em;line-height:1.1}
+.m-div{width:32px;height:1px;background:var(--gold)}
+.m-stats{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.m-stat{border:1px solid rgba(255,255,255,.1);padding:.85rem 1rem}
+.m-lbl{font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;display:block}
+.m-val{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300}
+.m-desc{font-size:.8rem;color:rgba(255,255,255,.6);line-height:2;font-style:italic}
+.m-sns{display:flex;gap:.65rem}
+.m-sns a{flex:1;text-align:center;padding:.65rem;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);transition:all .25s}.m-sns a:hover{border-color:var(--gold);color:var(--gold)}
+.m-btns{display:flex;flex-direction:column;gap:.65rem}
+.btn-line{background:#06c755;color:#fff;text-align:center;padding:.9rem;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;display:block;transition:filter .3s}.btn-line:hover{filter:brightness(1.12)}
+.btn-close-m{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);text-align:center;padding:.8rem;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;border:1px solid rgba(255,255,255,.1);transition:background .2s}.btn-close-m:hover{background:rgba(255,255,255,.14)}
+.modal-x{position:absolute;top:1rem;right:1rem;width:36px;height:36px;background:rgba(255,255,255,.1);color:var(--w);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;z-index:10;transition:background .2s}.modal-x:hover{background:var(--gold)}
+
+/* INSTAGRAM BAR */
+.ig-bar{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;text-align:center;padding:1.1rem 1.5rem;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:.75rem;transition:filter .3s}.ig-bar:hover{filter:brightness(1.08)}
+.ig-bar svg{width:18px;height:18px;fill:#fff;flex-shrink:0}
+
+/* BOTTOM BAR */
 .bar{position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex}
-.bi{flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.95rem;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;transition:filter .3s}.bi:hover{filter:brightness(1.1)}
-.bln{background:#06c755;color:#fff}.bml{background:#333;color:#fff}.brv{background:var(--gold);color:#fff}
-@media(max-width:1000px){.cast-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:700px){html,body{width:100%;max-width:100vw;overflow-x:hidden}.cast-grid{grid-template-columns:repeat(2,1fr);gap:.85rem}.cast-section{padding:1.75rem 1rem}.modal{grid-template-columns:1fr}.modal-img{min-height:220px;aspect-ratio:4/3}.modal-body{padding:1.25rem}.mstats{grid-template-columns:1fr 1fr}.mname{font-size:1.5rem}header{padding:0 1rem}.filter-bar{padding:.65rem 1rem;gap:.4rem}.filter-btn{padding:.35rem .85rem;font-size:.58rem}}
-@media(max-width:400px){.cast-grid{grid-template-columns:repeat(2,1fr);gap:.65rem}}
+.bi{flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:1rem;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;transition:filter .3s}.bi:hover{filter:brightness(1.1)}
+.bln{background:#06c755;color:#fff}.bml{background:#222;color:#fff}.brv{background:var(--gold);color:#fff}
+
+/* RESPONSIVE */
+@media(max-width:1080px){.cast-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
+@media(max-width:760px){
+  html,body{width:100%;max-width:100vw;overflow-x:hidden}
+  header{padding:0 1rem}
+  .logo{font-size:1.1rem}
+  .cast-wrap{padding:2rem 1rem}
+  .cast-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .modal{grid-template-columns:1fr}
+  .modal-photo{min-height:240px;aspect-ratio:4/3}
+  .modal-body{padding:1.5rem}
+  .m-stats{grid-template-columns:1fr 1fr}
+  .m-name{font-size:1.7rem}
+  .filter-wrap{padding:.65rem 1rem}
+  .fbtn{padding:.4rem .9rem;font-size:.56rem}
+}
+@media(max-width:420px){.cast-grid{grid-template-columns:repeat(2,1fr);gap:.75rem}}
 </style>
 </head>
 <body>
+
+<!-- HEADER -->
 <header>
   <div class="logo">Massage Tokyo<span>Best Massage in Ginza</span></div>
-  <div style="display:flex;align-items:center;gap:1.25rem">
-    <a href="index.html" class="hback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back to Top</a>
+  <div class="hright">
+    <a href="index.html" class="hback">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Top
+    </a>
     <a href="https://line.me/R/ti/p/@happyend_ginza" class="btnr" target="_blank">Reserve</a>
   </div>
 </header>
+
+<!-- HERO -->
 <section class="page-hero">
-  <span class="sen">Tonight's Cast</span>
-  <h1>Meet Our Companions</h1>
-  <p>Tap any photo to view full profile · Updated daily · All therapists speak English</p>
+  <div class="hero-bg"></div>
+  <div class="hero-in">
+    <span class="sen">Ginza &amp; Kayabacho · Updated Daily</span>
+    <h1>Tonight's<br>Companions</h1>
+    <div class="hero-dv"></div>
+    <p class="sub">Tap any photo to view full profile · All therapists speak English</p>
+  </div>
+  <div class="mq" style="margin-top:2.5rem;margin-left:-1.5rem;margin-right:-1.5rem">
+    <div class="mqi">
+      <span>Ginza</span><span class="sp">✦</span><span>Kayabacho</span><span class="sp">✦</span><span>English Speaking</span><span class="sp">✦</span><span>100% Private</span><span class="sp">✦</span><span>Cash Only</span><span class="sp">✦</span><span>Open Until 29:00</span><span class="sp">✦</span><span>Same-Day Booking</span><span class="sp">✦</span>
+      <span>Ginza</span><span class="sp">✦</span><span>Kayabacho</span><span class="sp">✦</span><span>English Speaking</span><span class="sp">✦</span><span>100% Private</span><span class="sp">✦</span><span>Cash Only</span><span class="sp">✦</span><span>Open Until 29:00</span><span class="sp">✦</span><span>Same-Day Booking</span><span class="sp">✦</span>
+    </div>
+  </div>
 </section>
-<div class="filter-bar">
-  <button class="filter-btn active" onclick="filterCast('ALL',this)">All</button>
-  <button class="filter-btn" onclick="filterCast('NEW FACE',this)">New Face</button>
-  <button class="filter-btn" onclick="filterCast('PREMIUM',this)">Premium</button>
-  <button class="filter-btn" onclick="filterCast('SPECIAL',this)">Special</button>
+
+<!-- FILTER -->
+<div class="filter-wrap">
+  <span class="filter-label">Filter</span>
+  <button class="fbtn on" onclick="filt('ALL',this)">All</button>
+  <button class="fbtn" onclick="filt('NEW FACE',this)">New Face</button>
+  <button class="fbtn" onclick="filt('PREMIUM',this)">Premium</button>
+  <button class="fbtn" onclick="filt('SPECIAL',this)">Special</button>
 </div>
-<section class="cast-section"><div class="cast-grid" id="castGrid"></div></section>
+
+<!-- GRID -->
+<section class="cast-wrap">
+  <div class="cast-grid" id="castGrid"></div>
+</section>
+
+<!-- MODAL -->
 <div class="modal-bg" id="modalBg">
-  <div class="modal" id="modal">
+  <div class="modal">
     <span class="modal-x" onclick="closeModal()">&#10005;</span>
-    <div class="modal-img" id="modalImg"></div>
+    <div class="modal-photo" id="mPhoto"></div>
     <div class="modal-body">
-      <div><span class="mrb" id="mRank"></span><div class="mname" id="mName"></div></div>
-      <div class="mdiv"></div>
-      <div class="mstats">
-        <div class="mstat"><span class="mstatlbl">Age</span><div class="mstatval" id="mAge"></div></div>
-        <div class="mstat"><span class="mstatlbl">Height</span><div class="mstatval" id="mHeight"></div></div>
-        <div class="mstat"><span class="mstatlbl">Cup</span><div class="mstatval" id="mCup"></div></div>
-        <div class="mstat"><span class="mstatlbl">Rank</span><div class="mstatval" id="mRankVal" style="font-size:.82rem"></div></div>
+      <div>
+        <span class="m-rank" id="mRank"></span>
+        <div class="m-name" id="mName"></div>
       </div>
-      <p class="mdesc" id="mDesc"></p>
-      <div class="msns" id="mSns" style="display:none;gap:.65rem"></div>
-      <div class="mbtns">
+      <div class="m-div"></div>
+      <div class="m-stats">
+        <div class="m-stat"><span class="m-lbl">Age</span><div class="m-val" id="mAge"></div></div>
+        <div class="m-stat"><span class="m-lbl">Height</span><div class="m-val" id="mHeight"></div></div>
+        <div class="m-stat"><span class="m-lbl">Cup</span><div class="m-val" id="mCup"></div></div>
+        <div class="m-stat"><span class="m-lbl">Rank</span><div class="m-val" id="mRankV" style="font-size:.85rem;letter-spacing:.04em"></div></div>
+      </div>
+      <p class="m-desc" id="mDesc"></p>
+      <div class="m-sns" id="mSns" style="display:none"></div>
+      <div class="m-btns">
         <a href="https://line.me/R/ti/p/@happyend_ginza" class="btn-line" target="_blank">Book via LINE</a>
-        <div class="btn-close" onclick="closeModal()">Close</div>
+        <div class="btn-close-m" onclick="closeModal()">Close</div>
       </div>
     </div>
   </div>
 </div>
-<a href="https://instagram.com/happyend_ginza" target="_blank" class="insta-bar">
+
+<!-- INSTAGRAM BAR -->
+<a href="https://instagram.com/happyend_ginza" target="_blank" class="ig-bar">
   <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-  Follow us on Instagram @happyend_ginza
+  Follow us on Instagram &nbsp;@happyend_ginza
 </a>
-<div class="bar"><a href="https://line.me/R/ti/p/@happyend_ginza" class="bi bln" target="_blank">LINE</a><a href="mailto:ginza.esthe@gmail.com" class="bi bml">Email</a><a href="https://line.me/R/ti/p/@happyend_ginza" class="bi brv" target="_blank">Book Now</a></div>
+
+<!-- BOTTOM BAR -->
+<div class="bar">
+  <a href="https://line.me/R/ti/p/@happyend_ginza" class="bi bln" target="_blank">LINE</a>
+  <a href="mailto:ginza.esthe@gmail.com" class="bi bml">Email</a>
+  <a href="https://line.me/R/ti/p/@happyend_ginza" class="bi brv" target="_blank">Book Now</a>
+</div>
+
 <script>
 const CAST=[
   {rank:"NEW FACE",name:"Airis",age:"26",height:"163",cup:"D",desc:"Irresistibly cute with maximum charm and a sexy edge.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/04/1775374488393.jpg",tw:"",ig:""},
@@ -136,41 +220,51 @@ const CAST=[
   {rank:"NEW FACE",name:"Mountain Dew",age:"24",height:"162",cup:"E",desc:"A unique presence — fresh and full of surprises.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1735052534887.webp",tw:"",ig:""},
   {rank:"NEW FACE",name:"Andrew",age:"22",height:"163",cup:"D",desc:"Charming new face bringing a fresh spark to every session.",img:"https://estemax.net/happy-end/wp-content/uploads/2025/05/1737710418647.webp",tw:"",ig:""}
 ];
-function renderCast(filter){
-  const grid=document.getElementById('castGrid');
-  const list=filter==='ALL'?CAST:CAST.filter(c=>c.rank===filter);
-  grid.innerHTML=list.map(c=>{
-    const idx=CAST.indexOf(c),rc=c.rank==='PREMIUM'?'nf pm':'nf'.replace('nf',c.rank==='PREMIUM'?'pm':c.rank==='SPECIAL'?'sp':'nf');
-    const rcClass=c.rank==='PREMIUM'?'pm':c.rank==='SPECIAL'?'sp':'nf';
-    return '<div class="cast-card" onclick="openModal('+idx+')">'
-      +'<span class="crnk '+rcClass+'">'+c.rank+'</span>'
-      +'<div class="cbgi" style="background-image:url(\''+c.img+'\')"></div>'
-      +'<div class="ctap-hint">View Profile</div>'
-      +'<div class="cinfo"><span class="cname">'+c.name+'</span><span class="cmeta">Age '+c.age+' · '+c.height+'cm ('+c.cup+' Cup)</span></div>'
-      +'</div>';
-  }).join('');
-  if('ontouchstart' in window)document.querySelectorAll('.ctap-hint').forEach(el=>el.style.opacity='1');
+
+let rankFlt='ALL';
+function filt(r,btn){
+  rankFlt=r;
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  render();
 }
-function filterCast(rank,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderCast(rank);}
+function render(){
+  const list=rankFlt==='ALL'?CAST:CAST.filter(c=>c.rank===rankFlt);
+  document.getElementById('castGrid').innerHTML=list.map((c,i)=>{
+    const idx=CAST.indexOf(c);
+    const rc=c.rank==='PREMIUM'?'rk-pm':c.rank==='SPECIAL'?'rk-sp':'rk-nf';
+    return `<div class="cast-card" onclick="openModal(${idx})">
+      <div class="cbgi" style="background-image:url('${c.img}')">
+        <span class="crnk ${rc}">${c.rank}</span>
+        <div class="hover-overlay"><span class="hover-lbl">View Profile</span></div>
+      </div>
+      <div class="cinfo">
+        <span class="cname">${c.name}</span>
+        <span class="cmeta">Age ${c.age} · ${c.height}cm (${c.cup} Cup)</span>
+      </div>
+    </div>`;
+  }).join('');
+  if('ontouchstart' in window)document.querySelectorAll('.hover-overlay').forEach(el=>el.style.opacity='1');
+}
 function openModal(idx){
   const c=CAST[idx],rc=c.rank==='PREMIUM'?'pm':c.rank==='SPECIAL'?'sp':'nf';
-  document.getElementById('modalImg').style.backgroundImage="url('"+c.img+"')";
-  const rb=document.getElementById('mRank');rb.textContent=c.rank;rb.className='mrb '+rc;
+  document.getElementById('mPhoto').style.backgroundImage=`url('${c.img}')`;
+  const rb=document.getElementById('mRank');rb.textContent=c.rank;rb.className='m-rank '+rc;
   document.getElementById('mName').textContent=c.name;
   document.getElementById('mAge').textContent=c.age;
   document.getElementById('mHeight').textContent=c.height+'cm';
   document.getElementById('mCup').textContent='('+c.cup+')';
-  document.getElementById('mRankVal').textContent=c.rank;
+  document.getElementById('mRankV').textContent=c.rank;
   document.getElementById('mDesc').textContent=c.desc;
   const sns=document.getElementById('mSns');let sh='';
-  if(c.tw) sh+='<a href="https://x.com/'+c.tw+'" target="_blank">X / Twitter</a>';
-  if(c.ig) sh+='<a href="https://instagram.com/'+c.ig+'" target="_blank">Instagram</a>';
+  if(c.tw) sh+=`<a href="https://x.com/${c.tw}" target="_blank">X / Twitter</a>`;
+  if(c.ig) sh+=`<a href="https://instagram.com/${c.ig}" target="_blank">Instagram</a>`;
   sns.innerHTML=sh;sns.style.display=sh?'flex':'none';
   const bg=document.getElementById('modalBg');bg.classList.add('show');document.body.style.overflow='hidden';
-  bg.onclick=function(e){if(e.target===bg)closeModal();};
+  bg.onclick=e=>{if(e.target===bg)closeModal();};
 }
 function closeModal(){document.getElementById('modalBg').classList.remove('show');document.body.style.overflow='';}
-renderCast('ALL');
+render();
 </script>
 </body>
 </html>
