@@ -120,6 +120,23 @@ header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,
 .cin p{font-size:.88rem;line-height:2.2;color:rgba(255,255,255,.82);margin-bottom:2rem}
 /* CAST */
 .castsec{background:var(--w)}
+/* TODAY LINEUP */
+.lineup-sec{background:var(--bg)}
+.lineup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1.25rem}
+.lineup-card{background:var(--w);border-radius:10px;overflow:hidden;border:1px solid var(--bd);transition:transform .25s,box-shadow .25s}
+.lineup-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px var(--sh)}
+.lineup-photo{width:100%;aspect-ratio:3/4;background-size:cover;background-position:center top;position:relative}
+.lineup-time{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.62);padding:5px 8px;font-size:10px;color:#fff;font-weight:500;display:flex;align-items:center;gap:4px;letter-spacing:.02em}
+.lineup-time svg{width:10px;height:10px;flex-shrink:0;opacity:.85}
+.lineup-rank{position:absolute;top:7px;left:7px;font-size:9px;font-weight:700;padding:2px 6px;border-radius:999px;color:#fff;text-transform:uppercase}
+.lineup-name{padding:8px 10px 4px;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;letter-spacing:.03em}
+.lineup-meta{padding:0 10px 9px;font-size:.65rem;color:var(--gl);letter-spacing:.05em}
+.lineup-live-badge{display:inline-flex;align-items:center;gap:5px;background:#ecfdf5;color:var(--green,#34c759);font-size:.58rem;font-weight:600;padding:4px 12px;border-radius:999px;border:1px solid rgba(52,199,89,.2);margin-top:.75rem}
+.lineup-live-dot{width:6px;height:6px;border-radius:50%;background:var(--green,#34c759);animation:lpulse 1.4s infinite}
+@keyframes lpulse{0%,100%{opacity:1}50%{opacity:.3}}
+.no-lineup{text-align:center;padding:2.5rem 1rem;color:var(--gl)}
+.no-lineup svg{width:36px;height:36px;margin:0 auto .75rem;display:block;opacity:.35}
+.no-lineup p{font-size:.82rem;line-height:1.8}
 .cg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .cc{overflow:hidden;position:relative;cursor:pointer;transition:transform .3s}.cc:hover{transform:translateY(-3px)}.cc:hover .cbgi{transform:scale(1.05)}
 .cbgi{width:100%;aspect-ratio:3/4;background-size:cover;background-position:center top;transition:transform .6s;display:block}
@@ -169,7 +186,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,
 .area-sec{background:var(--w)}
 .area-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:700px;margin:0 auto}
 .area-card{background:var(--bg);border:1px solid var(--bd);padding:2rem;text-align:center}
-.area-icon{font-size:2rem;margin-bottom:.75rem}
+.area-icon{font-size:2rem;margin-bottom:.75rem;color:var(--gold)}
 .area-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;margin-bottom:.4rem}
 .area-sub{font-size:.72rem;color:var(--gl);letter-spacing:.08em}
 /* FLOW */
@@ -304,7 +321,7 @@ footer{background:var(--b);color:var(--w);padding:3.5rem 0 2rem}
 </div></div>
 
 <!-- NEWS -->
-<section class="nsec"><div class="nin"><span class="nlbl">Campaign</span><div class="ntxt">🎉 Google Review Coupon Now Available — Post a review &amp; get ¥2,000 OFF your next visit!</div></div></section>
+<section class="nsec"><div class="nin"><span class="nlbl">Campaign</span><div class="ntxt">Google Review Coupon Now Available — Post a review &amp; get ¥2,000 OFF your next visit!</div></div></section>
 
 <!-- ABOUT + VIDEO -->
 <section class="sec vsec" id="about">
@@ -357,10 +374,23 @@ footer{background:var(--b);color:var(--w);padding:3.5rem 0 2rem}
 <!-- CONCEPT -->
 <section class="csec"><div class="cbg2"></div><div class="cin"><span class="sen" style="color:var(--glt)">Ginza &amp; Kayabacho</span><h2>Massage Tokyo —<br>The Best Kept Secret<br>in Central Tokyo</h2><div class="dv"></div><p>In the heart of Ginza and Kayabacho, we offer an exclusive private experience for discerning guests. Our English-speaking therapists provide world-class relaxation — tailored for international visitors.</p><a href="https://line.me/R/ti/p/@happyend_ginza" class="bwh" target="_blank">Reserve Now</a></div></section>
 
+<!-- TODAY LINEUP -->
+<section class="sec lineup-sec" id="lineup">
+  <div class="si">
+    <div class="sh">
+      <span class="sen">Live Schedule</span>
+      <h2 class="sja">Available Today</h2>
+      <div class="dv"></div>
+      <div id="lineupBadge" style="display:none;justify-content:center;margin-top:.75rem"></div>
+    </div>
+    <div id="lineupGrid"></div>
+  </div>
+</section>
+
 <!-- CAST -->
 <section class="sec castsec" id="cast">
   <div class="si">
-    <div class="sh"><span class="sen">Tonight's Cast</span><h2 class="sja">Meet Tonight's Companions</h2><div class="dv"></div><p class="ssub">Tap any photo to view profile · Updated daily</p></div>
+    <div class="sh"><span class="sen">Tonight's Cast</span><h2 class="sja">Meet Tonight's Companions</h2><div class="dv"></div><p class="ssub">Tap any photo to view profile · Updated daily · Cash only</p></div>
     <div class="cg">
       <div class="cc" onclick="openModal(0)"><span class="crnk nf">NEW FACE</span><div class="cbgi" style="background-image:url('https://best-massage-tokyo.com/wp-content/uploads/2026/04/1775374488393.jpg')"></div><div class="ctap-hint">View Profile</div><div class="cinfo"><span class="cname">Airis</span><span class="cmeta">Age 26 · 163cm (D Cup)</span></div></div>
       <div class="cc" onclick="openModal(1)"><span class="crnk nf">NEW FACE</span><div class="cbgi" style="background-image:url('https://best-massage-tokyo.com/wp-content/uploads/2026/01/1769063443347.webp')"></div><div class="ctap-hint">View Profile</div><div class="cinfo"><span class="cname">Paypay</span><span class="cmeta">Age 24 · 153cm (D Cup)</span></div></div>
@@ -402,8 +432,8 @@ footer{background:var(--b);color:var(--w);padding:3.5rem 0 2rem}
   <div class="si">
     <div class="sh"><span class="sen">Service Area</span><h2 class="sja">Our Locations</h2><div class="dv"></div><p class="ssub">We serve clients in the following areas</p></div>
     <div class="area-grid">
-      <div class="area-card"><div class="area-icon">🏙️</div><div class="area-name">Ginza</div><div class="area-sub">Main Location · All services available</div></div>
-      <div class="area-card"><div class="area-icon">📍</div><div class="area-name">Kayabacho</div><div class="area-sub">Second Location · All services available</div></div>
+      <div class="area-card"><div class="area-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><rect x="3" y="7" width="10" height="14"/><rect x="13" y="3" width="8" height="18"/><path d="M3 21h18M6 10h1M6 13h1M6 16h1M16 6h1M16 9h1M16 12h1M16 15h1"/></svg></div><div class="area-name">Ginza</div><div class="area-sub">Main Location · All services available</div></div>
+      <div class="area-card"><div class="area-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><div class="area-name">Kayabacho</div><div class="area-sub">Second Location · All services available</div></div>
     </div>
   </div>
 </section>
@@ -413,13 +443,13 @@ footer{background:var(--b);color:var(--w);padding:3.5rem 0 2rem}
   <div class="si">
     <div class="sh"><span class="sen">Pricing</span><h2 class="sja">Our Sessions</h2><div class="dv"></div>
     <p class="ssub">All prices in JPY · Cash payment only · Private room · Full service</p>
-    <div class="cash-badge" style="margin-top:.85rem">💴 Cash Only — No credit cards accepted</div>
+    <div class="cash-badge" style="margin-top:.85rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="flex-shrink:0"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M22 10H2M6 14h.01M18 14h.01"/></svg> Cash Only — No credit cards accepted</div>
   </div>
   <div class="pg" style="margin-top:2rem">
-    <div class="pc"><div class="pn">60 Min</div><div class="pt">Standard Session</div><div class="pa">¥20,000</div><div class="pu">Cash only</div><p class="pnote">✓ Private room<br>✓ English support<br>✓ Amenities included<br>✓ Ginza / Kayabacho</p></div>
-    <div class="pc ft"><div class="pbdg">Most Popular</div><div class="pn">90 Min</div><div class="pt">Recommended Session</div><div class="pa">¥28,000</div><div class="pu">Cash only</div><p class="pnote">✓ Private room<br>✓ English support<br>✓ Amenities included<br>✓ Ginza / Kayabacho</p></div>
-    <div class="pc"><div class="pn">120 Min</div><div class="pt">Premium Session</div><div class="pa">¥35,000</div><div class="pu">Cash only</div><p class="pnote">✓ Private room<br>✓ English support<br>✓ Amenities included<br>✓ Ginza / Kayabacho</p></div>
-    <div class="pc"><div class="pn">HAPPY END</div><div class="pt">Special Course</div><div class="pa">¥20,000~</div><div class="pu">Cash only · Same as standard</div><p class="pnote">✓ Private room<br>✓ English support<br>✓ Same pricing as regular sessions<br>✓ Advance booking required</p></div>
+    <div class="pc"><div class="pn">60 Min</div><div class="pt">Standard Session</div><div class="pa">¥20,000</div><div class="pu">Cash only</div><p class="pnote"><span style="color:var(--gold)">&#10003;</span> Private room<br><span style="color:var(--gold)">&#10003;</span> English support<br><span style="color:var(--gold)">&#10003;</span> Amenities included<br><span style="color:var(--gold)">&#10003;</span> Ginza / Kayabacho</p></div>
+    <div class="pc ft"><div class="pbdg">Most Popular</div><div class="pn">90 Min</div><div class="pt">Recommended Session</div><div class="pa">¥28,000</div><div class="pu">Cash only</div><p class="pnote"><span style="color:var(--gold)">&#10003;</span> Private room<br><span style="color:var(--gold)">&#10003;</span> English support<br><span style="color:var(--gold)">&#10003;</span> Amenities included<br><span style="color:var(--gold)">&#10003;</span> Ginza / Kayabacho</p></div>
+    <div class="pc"><div class="pn">120 Min</div><div class="pt">Premium Session</div><div class="pa">¥35,000</div><div class="pu">Cash only</div><p class="pnote"><span style="color:var(--gold)">&#10003;</span> Private room<br><span style="color:var(--gold)">&#10003;</span> English support<br><span style="color:var(--gold)">&#10003;</span> Amenities included<br><span style="color:var(--gold)">&#10003;</span> Ginza / Kayabacho</p></div>
+    <div class="pc"><div class="pn">HAPPY END</div><div class="pt">Special Course</div><div class="pa">¥20,000~</div><div class="pu">Cash only · Same as standard</div><p class="pnote"><span style="color:var(--gold)">&#10003;</span> Private room<br><span style="color:var(--gold)">&#10003;</span> English support<br><span style="color:var(--gold)">&#10003;</span> Same pricing as regular sessions<br><span style="color:var(--gold)">&#10003;</span> Advance booking required</p></div>
   </div>
   <div class="pnf">
     <strong>Important Notes:</strong><br>
@@ -495,6 +525,44 @@ footer{background:var(--b);color:var(--w);padding:3.5rem 0 2rem}
 <div class="bar"><a href="https://line.me/R/ti/p/@happyend_ginza" class="bi bln" target="_blank">LINE</a><a href="mailto:ginza.esthe@gmail.com" class="bi bml">Email</a><a href="https://line.me/R/ti/p/@happyend_ginza" class="bi brv" target="_blank">Book Now</a></div>
 
 <script>
+
+/* ========== TODAY LINEUP from admin localStorage ========== */
+function renderLineup(){
+  try{
+    var d=new Date();
+    var todayKey=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    var shifts=JSON.parse(localStorage.getItem("mt_shifts2")||"{}");
+    var castData=JSON.parse(localStorage.getItem("mt_cast")||"null");
+    var entries=shifts[todayKey]||[];
+    var badge=document.getElementById("lineupBadge");
+    var grid=document.getElementById("lineupGrid");
+    if(!entries.length){
+      grid.innerHTML='<div class="no-lineup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><p>Today's schedule is being updated.<br>Please contact us via LINE to check availability.</p></div>';
+      badge.style.display="none";
+      return;
+    }
+    badge.innerHTML='<span class="lineup-live-badge"><span class="lineup-live-dot"></span>'+entries.length+' therapists available today</span>';
+    badge.style.display="flex";
+    var allCast=castData||[];
+    grid.innerHTML='<div class="lineup-grid">'+entries.map(function(e){
+      var c=allCast.find(function(x){return x.id===e.id;});
+      if(!c)return "";
+      var rankColor=c.rank==="PREMIUM"?"var(--gold)":c.rank==="SPECIAL"?"#8b5cf6":"#4caf50";
+      var timeStr=(e.start&&e.end)?e.start+"–"+e.end:"";
+      return '<div class="lineup-card">'
+        +'<div class="lineup-photo" style="background-image:url(''+c.img+'')">'
+        +'<span class="lineup-rank" style="background:'+rankColor+'">'+c.rank+'</span>'
+        +(timeStr?'<div class="lineup-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>'+timeStr+'</div>':'')
+        +'</div>'
+        +'<div class="lineup-name">'+c.name+'</div>'
+        +'<div class="lineup-meta">Age '+c.age+' · T'+c.height+' ('+c.cup+')</div>'
+        +'</div>';
+    }).filter(Boolean).join("")+'</div>';
+  }catch(err){
+    var grid2=document.getElementById("lineupGrid");
+    if(grid2)grid2.innerHTML='';
+  }
+}
 const CAST=[
   {rank:"NEW FACE",name:"Airis",age:"26",height:"163",cup:"D",desc:"Irresistibly cute with maximum charm and a sexy edge.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/04/1775374488393.jpg",tw:"",ig:""},
   {rank:"NEW FACE",name:"Paypay",age:"24",height:"153",cup:"D",desc:"So charming you can't help but feel completely healed.",img:"https://best-massage-tokyo.com/wp-content/uploads/2026/01/1769063443347.webp",tw:"",ig:""},
@@ -534,6 +602,7 @@ tm=setInterval(()=>go(c+1),7000);
 function om(){document.getElementById('mob').classList.add('on');document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';}
 function cm(){document.getElementById('mob').classList.remove('on');document.getElementById('ov').classList.remove('on');document.body.style.overflow='';}
 function tf(el){el.parentElement.classList.toggle('on');}
+renderLineup();
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();cm();window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});}});});
 </script>
 </body>
